@@ -5,16 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class User {
+public class Faculty extends User {
+    @Id
+    @GeneratedValue
+    private int id;
 
-	@Id
-	@GeneratedValue
-	private Integer id;
-	private String username;
-	private String password;
-	
-	public User() {
-		
-	}
-	
+    public Faculty() {
+    }
 }
