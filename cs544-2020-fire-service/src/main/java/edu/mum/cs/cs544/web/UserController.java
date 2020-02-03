@@ -8,15 +8,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import edu.mum.cs.cs544.dao.AdminRepository;
 import edu.mum.cs.cs544.model.Admin;
+import edu.mum.cs.cs544.service.UserService;
 
 @RestController
 public class UserController {
 	
-//	@Autowired
-//    private UserService userService;
+	@Autowired
+    private UserService userService;
 
 	@GetMapping("/users/admin")
 	public List<Admin> getAllAdmin() {
-		return null;
+		return userService.findAll();
 	}
 }
