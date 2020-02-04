@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FireserviceService} from 'src/app/domain/services/testservice/fireservice.service';
 import Course from "../../../domain/models/course.model";
-
+import {CourseClientService} from "../../../domain/core/http";
 
 
 @Component({
@@ -18,9 +18,9 @@ export class CourseHomeComponent implements OnInit {
 
   DEFAULT_EMPTY_COURSE = {
     abbr: '',
-    name:'',
-    code:'',
-    description:'',
+    name: '',
+    code: '',
+    description: '',
   };
 
   selectedTab = 0;
@@ -28,7 +28,8 @@ export class CourseHomeComponent implements OnInit {
   currentCourse: Course;
 
 
-  constructor(private fireService: FireserviceService) {
+  constructor(private fireService: FireserviceService,
+              private courseClientService: CourseClientService) {
   }
 
   ngOnInit() {
@@ -54,9 +55,11 @@ export class CourseHomeComponent implements OnInit {
     this.selectedTab = 1;
   }
 
-  saveCourse($event: Course) {
-    //Todo integrate with BK
-    this.selectListCourse();
+  saveCourse(course: Course) {
+    this.courseClientService.addCourse$(course).subscribe(course => {
+      console.log(course);
+      this.selectListCourse();
+    })
   }
 
   deleteCourse($event: Course) {

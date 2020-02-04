@@ -48,7 +48,7 @@ public class DbInitializer implements CommandLineRunner {
         /*
          * Course
          * */
-        Course course = new Course("CS544", "Enterprise Architecture", "Enterprise Architecture");
+        Course course = new Course("CS544", "Enterprise Architecture","Abbr" ,"Enterprise Architecture");
         courseRepository.save(course);
 
         /*
