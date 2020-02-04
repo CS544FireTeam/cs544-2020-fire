@@ -1,19 +1,25 @@
 package edu.mum.cs.cs544.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.util.Date;
 
 @Entity
 public class Attendance {
     @Id
     private Integer id;
-    @ManyToOne
+    
+    @ManyToOne(fetch = FetchType.LAZY) @NotNull
     private Student student;
-    @ManyToOne
+    
+    @ManyToOne(fetch = FetchType.LAZY) @NotNull
     private TimeSlot timeSlot;
-    @ManyToOne
+    
+    @ManyToOne(fetch = FetchType.LAZY) @NotNull
     private Location location;
-    @Temporal(TemporalType.DATE)
+    
+    @Temporal(TemporalType.DATE) @NotNull
     private Date attendedDate;
 
     public Attendance() {

@@ -3,12 +3,14 @@ package edu.mum.cs.cs544.model;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Registration {
@@ -16,11 +18,11 @@ public class Registration {
 	@Id @GeneratedValue
 	private Integer id;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY) @NotNull
 	@JoinColumn(name="student_id")
 	private Student student;
 	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.DATE) @NotNull
 	private Date registerDate; 
 	
 	public Registration() {

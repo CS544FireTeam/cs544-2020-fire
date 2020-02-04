@@ -1,5 +1,6 @@
 package edu.mum.cs.cs544.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -7,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -14,12 +17,24 @@ public class User {
 
 	@Id @GeneratedValue
 	protected Integer id;
-
+	
+	@Column(unique = true, length = 200)
+	@NotBlank
 	protected String username;
+	
+	@Column(length = 255)
+	@NotBlank
 	protected String password;
+	
+	@Column(length = 255)
+	@NotBlank
 	protected String firstName;
+
+	@Column(length = 255)
+	@NotBlank
 	protected String lastname;
 	
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	protected UserRole role;
 	

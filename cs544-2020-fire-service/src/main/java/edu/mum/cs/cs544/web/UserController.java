@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api")
 public class UserController {
@@ -25,12 +27,12 @@ public class UserController {
     }
 
     @PostMapping(value = "/users")
-    public User saveUser(User user){
+    public User saveUser(@Valid User user){
         return this.userService.save(user);
     }
 
     @PutMapping(value = "/users/{id}")
-    public User updateUser(User user){
+    public User updateUser(@Valid User user){
         return this.userService.save(user);
     }
 

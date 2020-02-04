@@ -55,19 +55,19 @@ public class DbInitializer implements CommandLineRunner {
         * Session and Course offering
         * */
 
-        Calendar calendar = Calendar.getInstance();
-
-        CourseOffering courseOffering = new CourseOffering();
-        courseOffering.setStartDate(calendar.getTime());
-        calendar.add(Calendar.MONTH , 1);
-        courseOffering.setEndDate(calendar.getTime());
-        courseOffering.setCourse(course);
-        this.courseOfferingRepository.save(courseOffering);
-
-        Session session = new Session();
-        session.setDate(Calendar.getInstance().getTime());
-        session.setCourseOffering(courseOffering);
-        this.sessionRepository.save(session);
+//        Calendar calendar = Calendar.getInstance();
+//
+//        CourseOffering courseOffering = new CourseOffering();
+//        courseOffering.setStartDate(calendar.getTime());
+//        calendar.add(Calendar.MONTH , 1);
+//        courseOffering.setEndDate(calendar.getTime());
+//        courseOffering.setCourse(course);
+//        this.courseOfferingRepository.save(courseOffering);
+//
+//        Session session = new Session();
+//        session.setDate(Calendar.getInstance().getTime());
+//        session.setCourseOffering(courseOffering);
+//        this.sessionRepository.save(session);
 
 
         /*
@@ -80,7 +80,7 @@ public class DbInitializer implements CommandLineRunner {
         /*
          * Student
          * */
-        Student student = new Student("faculty1", "faculty1", "Peter", "Yellow","1","1");
+        Student student = new Student("student1", "faculty1", "Peter", "Yellow","1","1");
         this.studentRepository.save(student);
         System.out.println(" -- Database has been initialized");
     }
