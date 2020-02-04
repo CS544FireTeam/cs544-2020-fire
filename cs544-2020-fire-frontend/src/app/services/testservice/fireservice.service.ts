@@ -26,5 +26,15 @@ export class FireserviceService {
     return this.http.post("http://localhost:8080/login",user);
     
   }
+
+  enterBarcode(barcode): Observable<any>{   
+    return this.http.post("http://localhost:8080/api/barcode",barcode);
+    
+  }
+
+  getBarcode(barcode): Observable<any>{   
+    return this.http.get("http://localhost:8080/api/getBarcode/"+barcode);
+    
+  }
   
 }

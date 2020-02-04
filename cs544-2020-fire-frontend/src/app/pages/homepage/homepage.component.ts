@@ -14,6 +14,8 @@ export class HomepageComponent implements OnInit {
     email: "",
     password: ""
   };
+
+  isLogin:Boolean = true;
   constructor(private formBuilder: FormBuilder,private router: Router,private fireService:FireserviceService) { 
     this.loginFormGroup = this.formBuilder.group({
       email : new FormControl(
@@ -52,6 +54,10 @@ export class HomepageComponent implements OnInit {
     this.fireService.firstLoginAttempt(username,password).subscribe(
       res => {}
     );
+  }
+
+  toggle(){
+    this.isLogin = !this.isLogin;
   }
 
   public login (details) {
