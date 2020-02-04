@@ -19,6 +19,11 @@ import { CourseofferingpageComponent } from './pages/courseofferingpage/courseof
 import { SessionpageComponent } from './pages/sessionpage/sessionpage.component';
 import { LocationpageComponent } from './pages/locationpage/locationpage.component';
 
+import {MaterialModule} from "./material-module";
+import { LocationListComponent } from './modules/location/location-list/location-list.component';
+import { CourseListComponent } from './modules/course/course-list/course-list.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +33,9 @@ import { LocationpageComponent } from './pages/locationpage/locationpage.compone
     CoursepageComponent,
     CourseofferingpageComponent,
     SessionpageComponent,
-    LocationpageComponent
+    LocationpageComponent,
+    LocationListComponent,
+    CourseListComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +61,9 @@ import { LocationpageComponent } from './pages/locationpage/locationpage.compone
   providers: [
     InterceptorService,
     httpIntercetptorProvider,
-    FireserviceService
+    FireserviceService,
+    MaterialModule,
+    BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]
 })
