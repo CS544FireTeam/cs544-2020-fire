@@ -10,11 +10,6 @@ import {CourseClientService} from "../../../domain/core/http";
   styleUrls: ['./course-home.component.less']
 })
 export class CourseHomeComponent implements OnInit {
-  barcode = '';
-  user = {
-    "name": "",
-    "barcode": ""
-  };
 
   DEFAULT_EMPTY_COURSE = {
     abbr: '',
@@ -33,14 +28,6 @@ export class CourseHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-  }
-
-
-  submit() {
-    this.fireService.getBarcode(this.barcode).subscribe((res) => {
-      this.user = res;
-      console.log(res);
-    })
   }
 
   onEditCourse(course: Course) {

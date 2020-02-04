@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import CheckedItem from "../../shared/models/checked-item.model";
 import {PagingBaseComponent} from "../../shared/components/paging-base.component";
 import {Location} from "../../../domain/models";
@@ -77,8 +77,11 @@ export class LocationListComponent extends PagingBaseComponent<LocationItem> imp
     }
   ];
 
+  @Output() onEdit: EventEmitter<Location> = new EventEmitter();
+  @Output() onAddNew: EventEmitter<Location> = new EventEmitter();
+
   constructor() {
-    super(['action', 'id', 'description']);
+    super(['description','actionButton']);
   }
 
   ngOnInit() {
@@ -87,5 +90,13 @@ export class LocationListComponent extends PagingBaseComponent<LocationItem> imp
 
   ngAfterViewInit(): void {
     super.ngAfterViewInit();
+  }
+
+  onEditClick(location) {
+    this.onEdit.emit(location);
+  }
+
+  onAddClick() {
+    this.onAddNew.emit();
   }
 }

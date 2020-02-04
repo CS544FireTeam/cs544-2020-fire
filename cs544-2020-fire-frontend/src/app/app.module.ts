@@ -21,6 +21,7 @@ import {MaterialModule} from "./material-module";
 import {LocationListComponent} from './modules/location/location-list/location-list.component';
 import {CourseListComponent} from './modules/course/course-list/course-list.component';
 import {CourseEditComponent} from "./modules/course/course-edit/course-edit.component";
+import { LocationEditComponent } from './modules/location/location-edit/location-edit.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import {CourseEditComponent} from "./modules/course/course-edit/course-edit.comp
     LocationListComponent,
     CourseListComponent,
     CourseEditComponent,
+    LocationEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,7 @@ import {CourseEditComponent} from "./modules/course/course-edit/course-edit.comp
   ],
   providers: [
     InterceptorService,
-    httpIntercetptorProvider,
+ //   httpIntercetptorProvider,
     FireserviceService,
     MaterialModule,
     BrowserAnimationsModule
