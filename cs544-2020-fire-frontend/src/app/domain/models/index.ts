@@ -1,0 +1,9 @@
+export { default as Attendance } from './attendance.model';
+export { default as Course } from './course.model';
+export { default as CourseOffering } from './course-offering'
+export { default as Location } from './location.model';
+export { default as Registration } from './registration.model';
+export { default as Session } from './session.model';
+export { default as Student } from './student.model';
+export { default as TimeSlot } from './time-slot.model';
+export { default as User } from './user.model';
