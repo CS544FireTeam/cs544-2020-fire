@@ -1,1 +1,10 @@
-<fire-location-list></fire-location-list>
+<mat-tab-group>
+  <mat-tab label="List Location">
+    <fire-location-list></fire-location-list>
+  </mat-tab>
+  <mat-tab label="Detail">
+    <ng-template matTabContent>
+      <p>Really old locations here.</p>
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
