@@ -7,7 +7,7 @@ import {Attendance, AttendanceSearchCriteria} from "../../models";
   providedIn: "root",
 })
 
-export class UserClientService {
+export class AttendanceClientService {
   private API_BASE = 'http://localhost:8000/';
   private ATTENDANCE_API = 'attendances';
 

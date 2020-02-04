@@ -1,4 +1,4 @@
-export {UserClientService} from './attendance-client.service'
+export {AttendanceClientService} from './attendance-client.service'
 export {CourseClientService} from './course-client.service'
 export {CourseOfferingClientService} from './course-offering-client.service'
 export {LocationClientService} from './location-client.service'
