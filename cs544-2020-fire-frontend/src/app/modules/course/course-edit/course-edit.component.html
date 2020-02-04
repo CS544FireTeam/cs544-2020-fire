@@ -1,1 +1,37 @@
-<p>course-edit works!</p>
+<mat-card align="start">
+  <mat-card-title>Course</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="formGroup">
+      <!--   code   -->
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Number" formControlName="code" required>
+        <mat-error align="end" *ngIf="formGroup.get('code').hasError('required')">
+          Number is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Abbr" formControlName="abbr" required>
+        <mat-error align="end" *ngIf="formGroup.get('abbr').hasError('required')">
+          Abbr is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <textarea matInput placeholder="Name" formControlName="name" required style="height: 45px"></textarea>
+        <mat-error align="end" *ngIf="formGroup.get('name').hasError('required')">
+          Name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <textarea style="height: 90px" matInput placeholder="Description" formControlName="description"></textarea>
+      </mat-form-field>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" [disabled]="formGroup.invalid" *ngIf="!course || !course.id" (click)="save()">Add</button>
+    <button mat-raised-button color="primary" [disabled]="formGroup.invalid"  *ngIf="course && course.id" (click)="update()">Update</button>
+    <button mat-raised-button color="primary" [disabled]="formGroup.invalid" *ngIf="course && course.id" (click)="delete()">Delete</button>
+  </mat-card-actions>
+</mat-card>
+

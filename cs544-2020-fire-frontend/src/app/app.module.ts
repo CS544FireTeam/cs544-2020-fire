@@ -20,6 +20,7 @@ import {LocationHomeComponent} from './modules/location/location-home/location-h
 import {MaterialModule} from "./material-module";
 import {LocationListComponent} from './modules/location/location-list/location-list.component';
 import {CourseListComponent} from './modules/course/course-list/course-list.component';
+import {CourseEditComponent} from "./modules/course/course-edit/course-edit.component";
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {CourseListComponent} from './modules/course/course-list/course-list.comp
     SessionHomeComponent,
     LocationHomeComponent,
     LocationListComponent,
-    CourseListComponent
+    CourseListComponent,
+    CourseEditComponent,
   ],
   imports: [
     BrowserModule,

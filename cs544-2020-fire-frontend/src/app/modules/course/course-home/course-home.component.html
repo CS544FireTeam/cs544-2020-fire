@@ -1,10 +1,15 @@
-<mat-tab-group>
+<mat-tab-group [selectedIndex]="selectedTab" (selectedIndexChange)="selectedTab=$event">
   <mat-tab label="List Course">
-    <fire-course-list></fire-course-list>
+    <fire-course-list (onEdit)="onEditCourse($event)"
+                      (onAddNew)="onAddCourse($event)"
+    ></fire-course-list>
   </mat-tab>
   <mat-tab label="Detail">
-    <ng-template matTabContent>
-      <p>Really old locations here.</p>
-    </ng-template>
+    <fire-course-edit [course]="currentCourse"
+                      (onAdd)="saveCourse($event)"
+                      (onDelete)="deleteCourse($event)"
+                      (onUpdate)="updateCoures($event)"
+
+    ></fire-course-edit>
   </mat-tab>
 </mat-tab-group>
