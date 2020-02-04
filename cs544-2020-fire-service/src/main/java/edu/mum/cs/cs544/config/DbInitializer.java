@@ -61,9 +61,17 @@ public class DbInitializer implements CommandLineRunner {
 
 
         /*
+        * Faculty
         * */
+        Faculty faculty = new Faculty("faculty1", "faculty1", "Peter", "Yellow");
+        this.facultyRepository.save(faculty);
 
-        
+
+        /*
+         * Student
+         * */
+        Student student = new Student("faculty1", "faculty1", "Peter", "Yellow","1","1");
+        this.studentRepository.save(student);
         System.out.println(" -- Database has been initialized");
     }
     
