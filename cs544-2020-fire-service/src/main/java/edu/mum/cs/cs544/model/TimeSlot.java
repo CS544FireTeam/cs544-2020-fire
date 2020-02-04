@@ -1,7 +1,12 @@
 package edu.mum.cs.cs544.model;
 
 import javax.persistence.*;
-import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalTime;
 
 @Entity
 public class TimeSlot {
@@ -9,10 +14,14 @@ public class TimeSlot {
     @GeneratedValue
     private Integer id;
     private String description;
-    @Temporal(TemporalType.TIME)
-    private Date beginTime;
-    @Temporal(TemporalType.TIME)
-    private Date endTime;
+    
+    @DateTimeFormat(pattern="mm:ss")
+    @JsonFormat(pattern="mm:ss")
+    private LocalTime beginTime;
+    
+    @DateTimeFormat(pattern="mm:ss")
+    @JsonFormat(pattern="mm:ss")
+    private LocalTime endTime;
 
     public TimeSlot() {
     }
@@ -33,19 +42,22 @@ public class TimeSlot {
         this.description = description;
     }
 
-    public Date getBeginTime() {
-        return beginTime;
-    }
+	public LocalTime getBeginTime() {
+		return beginTime;
+	}
 
-    public void setBeginTime(Date beginTime) {
-        this.beginTime = beginTime;
-    }
+	public void setBeginTime(LocalTime beginTime) {
+		this.beginTime = beginTime;
+	}
 
-    public Date getEndTime() {
-        return endTime;
-    }
+	public LocalTime getEndTime() {
+		return endTime;
+	}
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
+	public void setEndTime(LocalTime endTime) {
+		this.endTime = endTime;
+	}
+
+	
+
 }

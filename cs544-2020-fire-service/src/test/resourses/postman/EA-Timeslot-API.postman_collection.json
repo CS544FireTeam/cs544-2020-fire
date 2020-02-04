@@ -1,0 +1,84 @@
+{
+	"variables": [],
+	"info": {
+		"name": "EA-Timeslot-API",
+		"_postman_id": "88ecb0b9-2188-9bfc-a76f-828f51e5416b",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/api/timeslots [findAll]",
+			"request": {
+				"url": "localhost:8080/api/timeslots",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/timeslot [create]",
+			"request": {
+				"url": "localhost:8080/api/timeslots",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"description\": \"Meditation morning\",\n\t\"beginTime\": [ 7, 5],\n\t\"endTime\": [ 7, 45]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/timeslots/8 [findOne]",
+			"request": {
+				"url": "localhost:8080/api/timeslots/8",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/timeslots/8 [update]",
+			"request": {
+				"url": "localhost:8080/api/timeslots/8",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 8,\n\t\"description\": \"Update Mediation\",\n\t\"beginTime\": [ 8, 0],\n\t\"endTime\": [ 8, 30]\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/api/timeslots/4 [delete]",
+			"request": {
+				"url": "localhost:8080/api/timeslots/8",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
