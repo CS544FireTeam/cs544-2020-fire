@@ -28,6 +28,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/custom-theme.scss",
               "src/styles.less"
             ],
             "scripts": []
@@ -124,6 +125,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "cs544-2020-fire-frontend"
 }

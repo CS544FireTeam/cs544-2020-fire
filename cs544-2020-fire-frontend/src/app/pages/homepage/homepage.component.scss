@@ -1,0 +1,23 @@
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-block {
+    width: 18%;
+    margin-top: 20%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 35px 20px 35px;
+    box-shadow: 2px 1px 10px 1px rgb(160, 159, 159);
+}
+
+.mat-form-group {
+    // height: 80px;
+    width: 100%;
+}
+
+.mat-btn {
+    width: 100%;
+}
