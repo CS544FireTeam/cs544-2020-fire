@@ -17,7 +17,6 @@ public class UserService {
     private AdminRepository adminRepository;
 	
 	public List<Admin> findAll(){
-		adminRepository.
 		return adminRepository.findAll();
 	}
 	

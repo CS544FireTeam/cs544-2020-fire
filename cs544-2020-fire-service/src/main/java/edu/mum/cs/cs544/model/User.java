@@ -14,7 +14,7 @@ public class User {
 
 	@Id @GeneratedValue
 	protected Integer id;
-	@
+
 	protected String username;
 	protected String password;
 	protected String firstName;
