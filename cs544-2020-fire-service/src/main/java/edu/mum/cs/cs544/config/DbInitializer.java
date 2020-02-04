@@ -14,16 +14,16 @@ import org.springframework.stereotype.Component;
 @Component
 @ConditionalOnProperty(name = "app.db-init", havingValue = "true")
 public class DbInitializer implements CommandLineRunner {
-	
+
 	@Autowired
     private UserRepository userRepository;
-	
+
 	@Autowired
     private AdminRepository adminRepository;
-	
+
 	@Autowired
     private StudentRepository studentRepository;
-	
+
 	@Autowired
     private FacultyRepository facultyRepository;
 
@@ -33,14 +33,23 @@ public class DbInitializer implements CommandLineRunner {
     @Autowired
     private CourseOfferingRepository courseOfferingRepository;
 
-    
+    @Autowired
+    private CourseRepository courseRepository;
+
+
     @Override
     public void run(String... strings) throws Exception {
         userRepository.deleteAll();
-        
+
         Admin admin = new Admin("admin", "admin", "Peter", "Yellow");
         Admin sys = new Admin("sys", "sys", "Mike", "Rooler");
         adminRepository.saveAll(Arrays.asList(admin, sys));
+
+        /*
+         * Course
+         * */
+        Course course = new Course("CS544", "Enterprise Architecture", "Enterprise Architecture");
+        courseRepository.save(course);
 
         /*
         * Session and Course offering
@@ -52,6 +61,7 @@ public class DbInitializer implements CommandLineRunner {
         courseOffering.setStartDate(calendar.getTime());
         calendar.add(Calendar.MONTH , 1);
         courseOffering.setEndDate(calendar.getTime());
+        courseOffering.setCourse(course);
         this.courseOfferingRepository.save(courseOffering);
 
         Session session = new Session();
@@ -74,5 +84,5 @@ public class DbInitializer implements CommandLineRunner {
         this.studentRepository.save(student);
         System.out.println(" -- Database has been initialized");
     }
-    
+
 }
