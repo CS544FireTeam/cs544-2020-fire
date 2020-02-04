@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api")
 public class FacultyController {
@@ -25,12 +27,12 @@ public class FacultyController {
     }
 
     @PostMapping(value = "/faculties")
-    public Faculty saveFaculty(Faculty faculty){
+    public Faculty saveFaculty(@Valid Faculty faculty){
         return this.facultyService.save(faculty);
     }
 
     @PutMapping(value = "/faculties/{id}")
-    public Faculty updateFaculty(Faculty faculty){
+    public Faculty updateFaculty(@Valid Faculty faculty){
         return this.facultyService.save(faculty);
     }
 

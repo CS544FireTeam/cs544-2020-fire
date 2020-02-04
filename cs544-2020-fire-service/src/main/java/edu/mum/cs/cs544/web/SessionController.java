@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api")
 public class SessionController {
@@ -25,12 +27,12 @@ public class SessionController {
     }
 
     @PostMapping(value = "/session")
-    public Session saveSession(Session session){
+    public Session saveSession(@Valid Session session){
         return this.sessionService.save(session);
     }
 
     @PutMapping(value = "/session/{id}")
-    public Session updateSession(Session session){
+    public Session updateSession(@Valid Session session){
         return this.sessionService.save(session);
     }
 
