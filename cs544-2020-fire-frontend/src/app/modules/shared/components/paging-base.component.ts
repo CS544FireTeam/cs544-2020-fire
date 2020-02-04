@@ -16,10 +16,8 @@ export abstract class PagingBaseComponent<T extends CheckedItem> {
   // @ts-ignore
   @ViewChild(MatSort) sort: MatSort;
 
-  abstract setDisplayedColumns();
-
-  protected constructor() {
-    this.setDisplayedColumns();
+  protected constructor(displayedColumns: string[]) {
+    this.displayedColumns = displayedColumns;
   }
 
   ngOnInit(elementData: T[]) {

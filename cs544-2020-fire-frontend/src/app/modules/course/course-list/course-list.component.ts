@@ -52,15 +52,11 @@ export class CourseListComponent  extends PagingBaseComponent<CourseItem> implem
   ]
     ;
    constructor() {
-    super();
+    super(['action', 'number', 'abbr', 'name', 'description']);
   }
 
   ngOnInit() {
     super.ngOnInit(this.mockData);
-  }
-
-  setDisplayedColumns() {
-    this.displayedColumns = ['action', 'number', 'abbr', 'name', 'description'];
   }
 
   ngAfterViewInit(): void {

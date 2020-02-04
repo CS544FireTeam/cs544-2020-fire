@@ -78,15 +78,11 @@ export class LocationListComponent extends PagingBaseComponent<LocationItem> imp
   ];
 
   constructor() {
-    super();
+    super(['action', 'id', 'description']);
   }
 
   ngOnInit() {
     super.ngOnInit(this.mockData);
-  }
-
-  setDisplayedColumns() {
-    this.displayedColumns = ['action', 'id', 'description'];
   }
 
   ngAfterViewInit(): void {
