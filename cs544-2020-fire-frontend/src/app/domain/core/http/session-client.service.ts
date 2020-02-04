@@ -8,7 +8,7 @@ import {Session} from "../../models";
 })
 
 export class SessionClientService {
-  private API_BASE = 'http://localhost:8000/';
+  private API_BASE = '/api/';
   private SESSION_API = 'sessions';
 
   constructor(private http: HttpClient) {

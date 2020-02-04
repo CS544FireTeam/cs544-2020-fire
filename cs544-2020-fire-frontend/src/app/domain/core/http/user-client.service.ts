@@ -8,7 +8,7 @@ import {User} from "../../models";
 })
 
 export class UserClientService {
-  private API_BASE = 'http://localhost:8000/';
+  private API_BASE = '/api/';
   private USER_API = 'users';
 
   constructor(private http: HttpClient) {

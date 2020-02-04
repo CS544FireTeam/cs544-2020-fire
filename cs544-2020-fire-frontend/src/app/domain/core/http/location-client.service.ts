@@ -8,7 +8,7 @@ import {Location} from "../../models";
 })
 
 export class LocationClientService {
-  private API_BASE = 'http://localhost:8000/';
+  private API_BASE = '/api/';
   private USER_API = 'locations';
 
   constructor(private http: HttpClient) {

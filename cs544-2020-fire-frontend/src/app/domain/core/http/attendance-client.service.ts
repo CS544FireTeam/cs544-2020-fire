@@ -8,7 +8,7 @@ import {Attendance, AttendanceSearchCriteria} from "../../models";
 })
 
 export class AttendanceClientService {
-  private API_BASE = 'http://localhost:8000/';
+  private API_BASE = '/api/';
   private ATTENDANCE_API = 'attendances';
 
   constructor(private http: HttpClient) {

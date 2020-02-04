@@ -22,12 +22,14 @@ export class CourseHomeComponent implements OnInit {
 
   currentCourse: Course;
 
-
   constructor(private fireService: FireserviceService,
               private courseClientService: CourseClientService) {
   }
 
   ngOnInit() {
+    this.courseClientService.getAllCourses$().subscribe(courses => {
+      console.log(courses);
+    })
   }
 
   onEditCourse(course: Course) {

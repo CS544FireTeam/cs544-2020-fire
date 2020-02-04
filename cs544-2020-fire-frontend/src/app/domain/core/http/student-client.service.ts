@@ -8,7 +8,7 @@ import {Student, StudentSearchResult, StudentSearchCriteria} from "../../models"
 })
 
 export class StudentClientService {
-  private API_BASE = 'http://localhost:8000/';
+  private API_BASE = '/api/';
   private STUDENT_API = 'students';
 
   constructor(private http: HttpClient) {
