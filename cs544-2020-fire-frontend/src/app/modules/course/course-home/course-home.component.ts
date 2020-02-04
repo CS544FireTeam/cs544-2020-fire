@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FireserviceService } from 'src/app/services/testservice/fireservice.service';
+import { FireserviceService } from 'src/app/domain/services/testservice/fireservice.service';
 
 @Component({
-  selector: 'app-coursepage',
-  templateUrl: './coursepage.component.html',
-  styleUrls: ['./coursepage.component.less']
+  selector: 'fire-coursepage',
+  templateUrl: './course-home.component.html',
+  styleUrls: ['./course-home.component.less']
 })
-export class CoursepageComponent implements OnInit {
+export class CourseHomeComponent implements OnInit {
   barcode='';
   user = {
     "name":"",

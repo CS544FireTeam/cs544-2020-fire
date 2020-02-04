@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { FireserviceService } from 'src/app/services/testservice/fireservice.service';
+import { FireserviceService } from 'src/app/domain/services/testservice/fireservice.service';
 
 @Component({
-  selector: 'app-homepage',
-  templateUrl: './homepage.component.html',
-  styleUrls: ['./homepage.component.scss']
+  selector: 'fire-home-page',
+  templateUrl: './home-page.component.html',
+  styleUrls: ['./home-page.component.scss']
 })
 export class HomepageComponent implements OnInit {
   loginFormGroup:FormGroup;
@@ -16,7 +16,7 @@ export class HomepageComponent implements OnInit {
   };
 
   isLogin:Boolean = true;
-  constructor(private formBuilder: FormBuilder,private router: Router,private fireService:FireserviceService) { 
+  constructor(private formBuilder: FormBuilder,private router: Router,private fireService:FireserviceService) {
     this.loginFormGroup = this.formBuilder.group({
       email : new FormControl(
         '',
@@ -70,7 +70,7 @@ export class HomepageComponent implements OnInit {
         }else{
           // this.showErr = true;
         }
-        
+
       }
     )
   }

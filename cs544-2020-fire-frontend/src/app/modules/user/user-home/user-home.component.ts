@@ -1,12 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { FireserviceService } from 'src/app/services/testservice/fireservice.service';
+import { FireserviceService } from 'src/app/domain/services/testservice/fireservice.service';
 
 @Component({
   selector: 'app-userspage',
-  templateUrl: './userspage.component.html',
-  styleUrls: ['./userspage.component.less']
+  templateUrl: './user-home.component.html',
+  styleUrls: ['./user-home.component.less']
 })
-export class UserspageComponent implements OnInit {
+export class UserHomeComponent implements OnInit {
   barcode ='';
   name = '';
   constructor(private fireService:FireserviceService) { }

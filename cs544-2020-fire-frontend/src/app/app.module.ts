@@ -6,16 +6,16 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {httpIntercetptorProvider} from './services/interceptors';
-import {InterceptorService} from './services/interceptors/interceptor.service';
-import {FireserviceService} from './services/testservice/fireservice.service';
-import {DashboardComponent} from './pages/dashboard/dashboard.component';
-import {HomepageComponent} from './pages/homepage/homepage.component';
-import {UserspageComponent} from './pages/userspage/userspage.component';
-import {CoursepageComponent} from './pages/coursepage/coursepage.component';
-import {CourseofferingpageComponent} from './pages/courseofferingpage/courseofferingpage.component';
-import {SessionpageComponent} from './pages/sessionpage/sessionpage.component';
-import {LocationpageComponent} from './pages/locationpage/locationpage.component';
+import {httpIntercetptorProvider} from './domain/services/interceptors';
+import {InterceptorService} from './domain/services/interceptors/interceptor.service';
+import {FireserviceService} from './domain/services/testservice/fireservice.service';
+import {DashboardComponent} from './modules/home/dashboard/dashboard.component';
+import {HomepageComponent} from './modules/home/home-page/home-page.component';
+import {UserHomeComponent} from './modules/user/user-home/user-home.component';
+import {CourseHomeComponent} from './modules/course/course-home/course-home.component';
+import {CourseOfferingHomeComponent} from './modules/courseOffering/course-offering-home/course-offering-home.component';
+import {SessionHomeComponent} from './modules/session/session-home/session-home.component';
+import {LocationHomeComponent} from './modules/location/location-home/location-home.component';
 
 import {MaterialModule} from "./material-module";
 import {LocationListComponent} from './modules/location/location-list/location-list.component';
@@ -27,11 +27,11 @@ import {CourseListComponent} from './modules/course/course-list/course-list.comp
     AppComponent,
     HomepageComponent,
     DashboardComponent,
-    UserspageComponent,
-    CoursepageComponent,
-    CourseofferingpageComponent,
-    SessionpageComponent,
-    LocationpageComponent,
+    UserHomeComponent,
+    CourseHomeComponent,
+    CourseOfferingHomeComponent,
+    SessionHomeComponent,
+    LocationHomeComponent,
     LocationListComponent,
     CourseListComponent
   ],
