@@ -14,6 +14,7 @@ public class User {
 
 	@Id @GeneratedValue
 	protected Integer id;
+
 	protected String username;
 	protected String password;
 	protected String firstName;
@@ -24,6 +25,14 @@ public class User {
 	
 	public User() {
 		
+	}
+
+	public User(String username, String password, String firstName, String lastname, UserRole role) {
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastname = lastname;
+		this.role = role;
 	}
 
 	public Integer getId() {

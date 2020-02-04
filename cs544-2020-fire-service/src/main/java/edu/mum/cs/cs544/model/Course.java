@@ -16,6 +16,12 @@ public class Course {
     public Course() {
     }
 
+    public Course(String code, String name, String description) {
+        this.code = code;
+        this.name = name;
+        this.description = description;
+    }
+
     public Integer getId() {
         return id;
     }
