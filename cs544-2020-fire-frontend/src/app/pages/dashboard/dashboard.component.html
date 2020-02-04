@@ -1,0 +1,49 @@
+<div class="sidebar" data-color="rose" data-background-color="black" data-image="../assets/img/sidebar-1.jpg">
+    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
+    <div class="dash-title">
+        Name
+    </div>
+    <section>
+        <mat-action-list>
+            <button mat-list-item (click)="show('users')" id="section-side"> View Users </button>
+            <button mat-list-item (click)="show('course')" id="section-side"> View Courses </button>
+            <button mat-list-item (click)="show('courseoffering')" id="section-side"> View Courses Offerings </button>
+            <button mat-list-item (click)="show('session')" id="section-side"> View Sessions </button>
+            <button mat-list-item (click)="show('location')" id="section-side"> View Locations </button>
+            <button mat-list-item (click)="logout()" id="section-side"> Logout </button>
+        </mat-action-list>
+    </section>
+
+</div>
+
+<div class="main-panel">
+    <mat-sidenav-container class="sevi-nav-container">
+
+        <mat-sidenav-content>
+            <section *ngIf="page=='users'" class="section-list">
+                <app-userspage></app-userspage>
+            </section>
+
+            <section *ngIf="page=='course'" class="log-class">
+                <div>
+                    <app-coursepage></app-coursepage>
+                </div>
+            </section>
+            <section *ngIf="page=='courseoffering'" class="log-class">
+                <div>
+                    <app-courseofferingpage></app-courseofferingpage>
+                </div>
+            </section>
+            <section *ngIf="page=='session'" class="log-class">
+                <div>
+                    <app-sessionpage></app-sessionpage>
+                </div>
+            </section>
+            <section *ngIf="page=='location'" class="log-class">
+                <div>
+                    <app-locationpage></app-locationpage>
+                </div>
+            </section>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
