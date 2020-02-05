@@ -11,7 +11,7 @@ export class CourseOfferingListComponent extends PagingBaseComponent<CourseOffer
 
   @Input() set courseOfferings(courseOfferings: CourseOffering[]) {
     this._courseOfferings = courseOfferings;
-    //super.ngOnInit(courseOfferings);
+    super.ngOnInit(courseOfferings);
   }
 
   @Output() onEdit: EventEmitter<CourseOffering> = new EventEmitter();
@@ -20,78 +20,15 @@ export class CourseOfferingListComponent extends PagingBaseComponent<CourseOffer
   _courseOfferings: CourseOffering[];
 
   get courseOfferings() {
-    //return this._courseOfferings;
-    return [
-      {
-        course: {
-          code: 'MPP422'
-        },
-        location: {
-          description: "Auto Pia"
-        },
-        faculty: {
-          firstName: 'Lam',
-          lastName: 'Tang'
-        },
-        startDate: new Date(),
-        endDate: new Date(),
-      }
-    ]
+    return this._courseOfferings;
   }
-
-  mockDatas: CourseOffering[] = [
-    {
-
-      course: {
-        code: 'MPP422'
-      },
-      location: {
-        description: "Auto Pia"
-      },
-      faculty: {
-        firstName: 'Lam',
-        lastName: 'Tang'
-      },
-      startDate: new Date(),
-      endDate: new Date(),
-    },
-    {
-      course: {
-        code: 'MPP422'
-      },
-      location: {
-        description: "Auto Pia"
-      },
-      faculty: {
-        firstName: 'Lam',
-        lastName: 'Tang'
-      },
-      startDate: new Date(),
-      endDate: new Date(),
-    },
-    {
-      course: {
-        code: 'MPP422'
-      },
-      location: {
-        description: "Auto Pia"
-      },
-      faculty: {
-        firstName: 'Lam',
-        lastName: 'Tang'
-      },
-      startDate: new Date(),
-      endDate: new Date(),
-    }
-  ];
 
   constructor() {
     super(['course', 'location', 'faculty', 'startDate', 'endDate', 'actionButton']);
   }
 
   ngOnInit() {
-    //super.ngOnInit(this.courseOfferings);
-    super.ngOnInit(this.mockDatas);
+    super.ngOnInit(this.courseOfferings);
   }
 
   ngAfterViewInit(): void {
