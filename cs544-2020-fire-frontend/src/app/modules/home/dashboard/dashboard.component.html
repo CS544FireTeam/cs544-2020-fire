@@ -10,7 +10,7 @@
             <button mat-list-item (click)="show('courseOffering')" class="section-side"> Courses Offerings </button>
             <button mat-list-item (click)="show('session')" class="section-side"> Sessions </button>
             <button mat-list-item (click)="show('location')" class="section-side"> Locations </button>
-          <button mat-list-item (click)="show('timeSlot')" class="section-side"> Time Slot </button>
+            <button mat-list-item (click)="show('timeSlot')" class="section-side"> Time Slot </button>
             <button mat-list-item (click)="logout()" class="section-side"> Logout </button>
         </mat-action-list>
     </section>
@@ -47,11 +47,11 @@
                     <fire-location-home></fire-location-home>
                 </div>
             </section>
-          <section *ngIf="page=='timeSlot'" class="log-class">
-            <div>
-              <fire-time-slot-home></fire-time-slot-home>
-            </div>
-          </section>
+            <section *ngIf="page=='timeSlot'" class="log-class">
+                <div>
+                    <fire-time-slot-home></fire-time-slot-home>
+                </div>
+            </section>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

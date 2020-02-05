@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   opened:boolean = false;
   user:User;
   constructor(private router: Router,private fireService:FireserviceService) { 
-      // this.user = this.fireService.getUser();
+      this.user = this.fireService.user;
   }
 
   ngOnInit() {
