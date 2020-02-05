@@ -69,7 +69,6 @@ export class CourseHomeComponent implements OnInit {
   }
 
   selectListCourse() {
-    // TODO: reload Data
     this.currentCourse = {
       ...this.DEFAULT_EMPTY_COURSE,
     };

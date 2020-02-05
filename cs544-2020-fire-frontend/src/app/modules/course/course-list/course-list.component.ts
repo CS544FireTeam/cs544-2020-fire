@@ -40,11 +40,6 @@ export class CourseListComponent extends PagingBaseComponent<Course> implements 
   }
 
   onAddClick() {
-    this.onAddNew.emit({
-      abbr: '',
-      name: '',
-      code: '',
-      description: '',
-    });
+    this.onAddNew.emit();
   }
 }

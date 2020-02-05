@@ -11,19 +11,21 @@ import {LocationClientService} from "../../../domain/core/http";
 export class LocationHomeComponent implements OnInit {
 
   DEFAULT_EMPTY_LOCATION: Location = {
+    id: undefined,
     description: '',
   };
 
   selectedTab = 0;
 
   currentLocation: Location;
-
+  locations: Location[];
 
   constructor(private fireService: FireserviceService,
               private locationClientService: LocationClientService) {
   }
 
   ngOnInit() {
+    this.loadListLocation();
   }
 
   onEditLocation(location: Location) {
@@ -45,22 +47,29 @@ export class LocationHomeComponent implements OnInit {
     })
   }
 
-  deleteLocation($event: Location) {
-    //Todo integrate with BK
-    this.selectListLocation();
+  deleteLocation(location: Location) {
+    this.locationClientService.deleteLocation$(location.id).subscribe(() => {
+      this.selectListLocation();
+    });
   }
 
-  updateLocation($event: Location) {
-    //Todo integrate with BK
-    this.selectListLocation();
+  updateLocation(location: Location) {
+    this.locationClientService.modifyLocation$(location).subscribe(() => {
+      this.selectListLocation();
+    });
   }
 
   selectListLocation() {
-    // TODO: reload Data
     this.currentLocation = {
       ...this.DEFAULT_EMPTY_LOCATION,
     };
-    this.selectedTab = 0;
+    this.loadListLocation();
   }
 
+  private loadListLocation() {
+    this.locationClientService.getAllLocations$().subscribe(locations => {
+      this.locations = locations;
+      this.selectedTab = 0;
+    })
+  }
 }
