@@ -32,7 +32,7 @@ public class User {
 
 	@Column(length = 255)
 	@NotBlank
-	protected String lastname;
+	protected String lastName;
 	
 	@NotNull
 	@Enumerated(EnumType.STRING)
@@ -42,11 +42,11 @@ public class User {
 		
 	}
 
-	public User(String username, String password, String firstName, String lastname, UserRole role) {
+	public User(String username, String password, String firstName, String lastName, UserRole role) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
-		this.lastname = lastname;
+		this.lastName = lastName;
 		this.role = role;
 	}
 
@@ -82,12 +82,12 @@ public class User {
 		this.firstName = firstName;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public UserRole getRole() {
