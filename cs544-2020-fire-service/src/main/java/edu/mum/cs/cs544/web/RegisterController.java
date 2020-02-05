@@ -1,6 +1,5 @@
 package edu.mum.cs.cs544.web;
 
-import edu.mum.cs.cs544.integration.SignupProducer;
 import edu.mum.cs.cs544.model.Admin;
 import edu.mum.cs.cs544.model.Faculty;
 import edu.mum.cs.cs544.model.Student;
@@ -31,9 +30,6 @@ public class RegisterController {
     private FacultyService facultyService;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    
-    @Autowired
-    private SignupProducer signupConsumer;
 
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
@@ -49,11 +45,7 @@ public class RegisterController {
     @PostMapping(value = "/student")
     public Student addStudent(@Valid @RequestBody Student student) {
         student.setPassword(passwordEncoder.encode(student.getPassword()));
-        Student s = this.studentService.create(student);
-        if (s != null) {
-        	signupConsumer.sendMessage(s);
-        }
-        return s;
+        return this.studentService.create(student);
     }
 
     @PostMapping(value = "/faculty")

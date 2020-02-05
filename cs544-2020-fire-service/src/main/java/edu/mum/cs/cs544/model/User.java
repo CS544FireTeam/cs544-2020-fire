@@ -1,7 +1,5 @@
 package edu.mum.cs.cs544.model;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -15,7 +13,7 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class User implements Serializable {
+public class User {
 
 	@Id @GeneratedValue
 	protected Integer id;
