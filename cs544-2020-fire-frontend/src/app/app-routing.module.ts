@@ -1,11 +1,16 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {MainPageComponent} from "./modules/home/main-page/main-page.component";
+import {HomepageComponent} from "./modules/home/home-page/home-page.component";
 
 
 const routes: Routes = [
   {
     path: '',
+    component: HomepageComponent,
+  },
+  {
+    path: 'home',
     component: MainPageComponent,
     children: [
       {
@@ -29,7 +34,8 @@ const routes: Routes = [
         loadChildren: () => import('./modules/timeSlot/time-slot.module').then(m => m.TimeSlotModule),
       },
     ]
-  }
+  },
+
 ];
 
 @NgModule({

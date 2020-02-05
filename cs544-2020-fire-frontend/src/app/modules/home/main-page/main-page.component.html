@@ -1,10 +1,10 @@
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav">
-    <button color="primary" mat-button routerLink="/users" style="font-size: 20px; color: coral">Users</button>
-    <button color="primary" mat-button routerLink="/courses" style="font-size: 20px; color: coral">Courses</button>
-    <button color="primary" mat-button routerLink="/courseoffering" style="font-size: 20px; color: coral">Course Offering</button>
-    <button color="primary" mat-button routerLink="/location" style="font-size: 20px; color: coral"> Location</button>
-    <button color="primary" mat-button routerLink="/timeslot" style="font-size: 20px; color: coral"> Time Slot</button>
+    <button color="primary" mat-button routerLink="/home/users">Users</button>
+    <button color="primary" mat-button routerLink="/home/courses">Courses</button>
+    <button color="primary" mat-button routerLink="/home/courseoffering">Course Offering</button>
+    <button color="primary" mat-button routerLink="/home/location"> Location</button>
+    <button color="primary" mat-button routerLink="/home/timeslot"> Time Slot</button>
   </mat-drawer>
   <div class="sidenav-content">
     <mat-toolbar color="primary">
@@ -12,24 +12,16 @@
         <button mat-icon-button (click)="drawer.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
-        <span>Title</span>
+        <span>Bar-code Reader</span>
         <span class="spacer"></span>
         <mat-icon>favorite</mat-icon>
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item>
-            <mat-icon>publish</mat-icon>
-            <span>Share</span>
-          </button>
-          <button mat-menu-item disabled>
-            <mat-icon>mode_comment</mat-icon>
-            <span>Comment</span>
-          </button>
-          <button mat-menu-item>
-            <mat-icon>delete</mat-icon>
-            <span>Delete</span>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>directions_walk</mat-icon>
+            <span>Logout</span>
           </button>
         </mat-menu>
       </mat-toolbar-row>

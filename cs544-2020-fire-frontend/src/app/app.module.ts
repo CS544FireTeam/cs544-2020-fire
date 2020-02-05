@@ -13,12 +13,14 @@ import {MaterialModule} from "./material-module";
 import {AuthGuardService} from './domain/services/AuthGuard/auth-guard.service';
 import {httpIntercetptorProvider} from "./domain/services/interceptors";
 import {MainPageComponent} from "./modules/home/main-page/main-page.component";
+import {HomepageComponent} from "./modules/home/home-page/home-page.component";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
+    HomepageComponent,
   ],
   imports: [
     BrowserModule,
