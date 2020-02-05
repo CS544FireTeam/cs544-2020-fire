@@ -26,7 +26,7 @@ public class User {
 	
 	@Column(length = 255)
 	@NotBlank 
-	@JsonIgnore
+	//@JsonIgnore
 	protected String password;
 	
 	@Column(length = 255)
