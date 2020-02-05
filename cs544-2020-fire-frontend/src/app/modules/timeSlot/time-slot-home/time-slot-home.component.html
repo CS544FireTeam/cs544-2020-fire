@@ -1,0 +1,17 @@
+<mat-tab-group [selectedIndex]="selectedTab" (selectedIndexChange)="selectedTab=$event">
+  <mat-tab label="List TimeSlot">
+    <fire-time-slot-list [timeSlots]="timeSlots"
+                         (onEdit)="onEditTimeSlot($event)"
+                         (onAddNew)="onAddTimeSlot()"
+    ></fire-time-slot-list>
+  </mat-tab>
+  <mat-tab label="Detail">
+    <fire-time-slot-edit [timeSlot]="currentTimeSlot"
+                        [timeSlots]="timeSlots"
+                        (onAdd)="saveTimeSlot($event)"
+                        (onDelete)="deleteTimeSlot($event)"
+                        (onUpdate)="updateTimeSlot($event)"
+
+    ></fire-time-slot-edit>
+  </mat-tab>
+</mat-tab-group>

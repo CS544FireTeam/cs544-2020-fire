@@ -5,12 +5,13 @@
     </div>
     <section>
         <mat-action-list>
-            <button mat-list-item (click)="show('users')" id="section-side"> View Users </button>
-            <button mat-list-item (click)="show('course')" id="section-side"> View Courses </button>
-            <button mat-list-item (click)="show('courseoffering')" id="section-side"> View Courses Offerings </button>
-            <button mat-list-item (click)="show('session')" id="section-side"> View Sessions </button>
-            <button mat-list-item (click)="show('location')" id="section-side"> View Locations </button>
-            <button mat-list-item (click)="logout()" id="section-side"> Logout </button>
+            <button mat-list-item (click)="show('users')" class="section-side"> Users </button>
+            <button mat-list-item (click)="show('course')" class="section-side"> Courses </button>
+            <button mat-list-item (click)="show('courseOffering')" class="section-side"> Courses Offerings </button>
+            <button mat-list-item (click)="show('session')" class="section-side"> Sessions </button>
+            <button mat-list-item (click)="show('location')" class="section-side"> Locations </button>
+          <button mat-list-item (click)="show('timeSlot')" class="section-side"> Time Slot </button>
+            <button mat-list-item (click)="logout()" class="section-side"> Logout </button>
         </mat-action-list>
     </section>
 
@@ -31,7 +32,7 @@
                     <fire-coursepage></fire-coursepage>
                 </div>
             </section>
-            <section *ngIf="page=='courseoffering'" class="log-class">
+            <section *ngIf="page=='courseOffering'" class="log-class">
                 <div>
                     <fire-course-offering-home></fire-course-offering-home>
                 </div>
@@ -46,6 +47,11 @@
                     <fire-location-home></fire-location-home>
                 </div>
             </section>
+          <section *ngIf="page=='timeSlot'" class="log-class">
+            <div>
+              <fire-time-slot-home></fire-time-slot-home>
+            </div>
+          </section>
         </mat-sidenav-content>
     </mat-sidenav-container>
 </div>

@@ -6,7 +6,6 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {httpIntercetptorProvider} from './domain/services/interceptors';
 import {InterceptorService} from './domain/services/interceptors/interceptor.service';
 import {FireserviceService} from './domain/services/testservice/fireservice.service';
 import {DashboardComponent} from './modules/home/dashboard/dashboard.component';
@@ -20,11 +19,14 @@ import {LocationHomeComponent} from './modules/location/location-home/location-h
 import {MaterialModule} from "./material-module";
 import {LocationListComponent} from './modules/location/location-list/location-list.component';
 import {CourseListComponent} from './modules/course/course-list/course-list.component';
-import { AuthGuardService } from './domain/services/AuthGuard/auth-guard.service';
+import {AuthGuardService} from './domain/services/AuthGuard/auth-guard.service';
 import {CourseEditComponent} from "./modules/course/course-edit/course-edit.component";
-import { LocationEditComponent } from './modules/location/location-edit/location-edit.component';
-import { CourseOfferingListComponent } from './modules/courseOffering/course-offering-list/course-offering-list.component';
-import { CourseOfferingEditComponent } from './modules/courseOffering/course-offering-edit/course-offering-edit.component';
+import {LocationEditComponent} from './modules/location/location-edit/location-edit.component';
+import {CourseOfferingListComponent} from './modules/courseOffering/course-offering-list/course-offering-list.component';
+import {CourseOfferingEditComponent} from './modules/courseOffering/course-offering-edit/course-offering-edit.component';
+import {TimeSlotEditComponent} from "./modules/timeSlot/time-slot-edit/time-slot-edit.component";
+import {TimeSlotHomeComponent} from "./modules/timeSlot/time-slot-home/time-slot-home.component";
+import {TimeSlotListComponent} from "./modules/timeSlot/time-slot-list/time-slot-list.component";
 
 
 @NgModule({
@@ -43,6 +45,9 @@ import { CourseOfferingEditComponent } from './modules/courseOffering/course-off
     LocationEditComponent,
     CourseOfferingListComponent,
     CourseOfferingEditComponent,
+    TimeSlotEditComponent,
+    TimeSlotHomeComponent,
+    TimeSlotListComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +60,7 @@ import { CourseOfferingEditComponent } from './modules/courseOffering/course-off
   ],
   providers: [
     InterceptorService,
- //   httpIntercetptorProvider,
+    //   httpIntercetptorProvider,
     FireserviceService,
     MaterialModule,
     AuthGuardService,
