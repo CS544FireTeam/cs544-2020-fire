@@ -21,14 +21,20 @@ export class CourseHomeComponent implements OnInit {
   selectedTab = 0;
 
   currentCourse: Course;
+  courses: Course[];
 
   constructor(private fireService: FireserviceService,
               private courseClientService: CourseClientService) {
   }
 
   ngOnInit() {
+    this.loadListCourse();
+  }
+
+  loadListCourse() {
     this.courseClientService.getAllCourses$().subscribe(courses => {
-      console.log(courses);
+      this.courses = courses;
+      this.selectedTab = 0;
     })
   }
 
@@ -46,19 +52,20 @@ export class CourseHomeComponent implements OnInit {
 
   saveCourse(course: Course) {
     this.courseClientService.addCourse$(course).subscribe(course => {
-      console.log(course);
       this.selectListCourse();
     })
   }
 
-  deleteCourse($event: Course) {
-    //Todo integrate with BK
-    this.selectListCourse();
+  deleteCourse(course: Course) {
+    this.courseClientService.deleteCourse$(course.id).subscribe(() => {
+      this.selectListCourse();
+    });
   }
 
-  updateCoures($event: Course) {
-    //Todo integrate with BK
-    this.selectListCourse();
+  updateCoures(course: Course) {
+    this.courseClientService.modifyCourse$(course).subscribe(() => {
+      this.selectListCourse();
+    });
   }
 
   selectListCourse() {
@@ -66,7 +73,7 @@ export class CourseHomeComponent implements OnInit {
     this.currentCourse = {
       ...this.DEFAULT_EMPTY_COURSE,
     };
-    this.selectedTab = 0;
+    this.loadListCourse();
   }
 }
 

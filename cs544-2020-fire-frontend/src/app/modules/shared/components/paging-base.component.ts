@@ -1,9 +1,8 @@
 import {MatSort} from "@angular/material/sort";
 import {ViewChild} from "@angular/core";
 import {MatTableDataSource} from "@angular/material/table";
-import CheckedItem from "../models/checked-item.model";
 
-export abstract class PagingBaseComponent<T extends CheckedItem> {
+export abstract class PagingBaseComponent<T> {
   displayedColumns: string[];
   ELEMENT_DATA: T[] = [];
   dataSource: MatTableDataSource<T>;
@@ -33,17 +32,21 @@ export abstract class PagingBaseComponent<T extends CheckedItem> {
   }
 
   loadData(pageIndex, pageSize) {
-    this.dataSource = new MatTableDataSource<T>(this.ELEMENT_DATA.slice(pageIndex, pageIndex + pageSize));
-    this.dataSource.sort = this.sort;
+    if (this.ELEMENT_DATA) {
+      this.dataSource = new MatTableDataSource<T>(this.ELEMENT_DATA.slice(pageIndex, pageIndex + pageSize));
+      this.dataSource.sort = this.sort;
+    }
   }
 
-  selectAll() {
-    this.ELEMENT_DATA.forEach(elm => {
-      elm.isChecked = !elm.isChecked;
-    });
-  }
+  /*  selectAll() {
+      this.ELEMENT_DATA.forEach(elm => {
+        elm.isChecked = !elm.isChecked;
+      });
+    }*/
 
   ngAfterViewInit(): void {
-    this.dataSource.sort = this.sort;
+    if (this.dataSource) {
+      this.dataSource.sort = this.sort;
+    }
   }
 }
