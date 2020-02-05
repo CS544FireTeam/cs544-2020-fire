@@ -27,12 +27,12 @@ public class StudentController {
     }
 
     @PostMapping(value = "/students")
-    public Student saveStudent(@Valid Student student){
+    public Student saveStudent(@RequestBody @Valid Student student){
         return this.studentService.save(student);
     }
 
     @PutMapping(value = "/students/{id}")
-    public Student updateStudent(@Valid Student student){
+    public Student updateStudent(@RequestBody @Valid Student student){
         return this.studentService.save(student);
     }
 

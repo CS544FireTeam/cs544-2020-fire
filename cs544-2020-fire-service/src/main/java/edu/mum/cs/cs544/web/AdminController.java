@@ -27,12 +27,12 @@ public class AdminController {
     }
 
     @PostMapping(value = "/admins")
-    public Admin saveAdmin(@Valid Admin admin){
+    public Admin saveAdmin(@RequestBody @Valid Admin admin){
         return this.adminService.save(admin);
     }
 
     @PutMapping(value = "/admins/{id}")
-    public Admin updateAdmin(@Valid Admin admin){
+    public Admin updateAdmin(@RequestBody @Valid Admin admin){
         return this.adminService.save(admin);
     }
 

@@ -27,12 +27,12 @@ public class CourseController {
     }
 
     @PostMapping(value = "/courses")
-    public Course saveCourse(@Valid Course course){
+    public Course saveCourse(@RequestBody @Valid Course course){
         return this.courseService.save(course);
     }
 
     @PutMapping(value = "/courses/{id}")
-    public Course updateCourse(@Valid Course course){
+    public Course updateCourse(@RequestBody @Valid Course course){
         return this.courseService.save(course);
     }
 
