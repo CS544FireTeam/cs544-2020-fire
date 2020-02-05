@@ -27,6 +27,11 @@ export class InterceptorService implements HttpInterceptor{
       console.log("ITS NOT WORKING Bliat")
       console.log(errorMsg);
     }
+
+    if (err.status === 500) {
+      console.log("500 ERROR")
+      console.log(errorMsg);
+    }
   
     return Observable.throw(errorMsg);
 }
@@ -39,15 +44,14 @@ export class InterceptorService implements HttpInterceptor{
     authReq = req;
    }
     return next.handle(authReq).pipe(tap(success=>{
-      
-      // if(authReq.url=="http://localhost:8080/login"){
-      //    this.injector.get(Router).navigateByUrl('pages/dashboard');
-      // }
-      this.injector.get(Router).navigateByUrl('pages/dashboard');
+      if(authReq.url=="http://localhost:8080/login"){
+         this.injector.get(Router).navigateByUrl('pages/dashboard');
+         console.log("HEEEEERE")
+      }
      
     },err=>{
+      console.log("HOMEEEEEEEDD")
       // this.injector.get(Router).navigateByUrl('pages/home');
-      this.injector.get(Router).navigateByUrl('pages/dashboard');
     }));
   }
 

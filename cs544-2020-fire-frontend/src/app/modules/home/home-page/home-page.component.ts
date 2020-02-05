@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FireserviceService } from 'src/app/domain/services/testservice/fireservice.service';
+import { User } from 'src/app/domain/models';
 
 @Component({
   selector: 'fire-home-page',
@@ -14,7 +15,7 @@ export class HomepageComponent implements OnInit {
   //   email: "",
   //   password: ""
   // };
-
+ user:User;
   isLogin:Boolean = true;
   constructor(private formBuilder: FormBuilder,private router: Router,private fireService:FireserviceService) {
     this.loginFormGroup = this.formBuilder.group({
@@ -36,15 +37,14 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.checkToken();
+    this.checkToken();
   }
 
 
   private checkToken(){
     if(localStorage.getItem('token')!=null){
-      let username : String  = localStorage.getItem('email');
-      let password : String  = localStorage.getItem('password');
-      this.firstLoginAttempt(username,password)
+      this.user= (JSON.parse(localStorage.getItem('user')))
+      this.firstLoginAttempt(this.user.username,this.user.password)
       return;
     }
     console.log("Not Logged in")
@@ -52,7 +52,9 @@ export class HomepageComponent implements OnInit {
 
   private firstLoginAttempt(username:String , password: String){
     this.fireService.firstLoginAttempt(username,password).subscribe(
-      res => {}
+      res => {
+        localStorage.setItem("user",res.user);
+      }
     );
   }
 
@@ -65,6 +67,8 @@ export class HomepageComponent implements OnInit {
       res => {
         if(res.token!=null){
           localStorage.setItem("token",res.token);
+           localStorage.setItem("user",res.user);
+          console.log(localStorage.getItem('user'))
           localStorage.setItem("email",details.email.toString());
           localStorage.setItem("password",details.password.toString());
         }else{

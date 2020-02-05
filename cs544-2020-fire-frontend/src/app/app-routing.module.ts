@@ -12,7 +12,7 @@ import { UserRoleEnum } from './domain';
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'pages/dashboard', pathMatch: 'full' },
+  {path: '', redirectTo: 'pages/home', pathMatch: 'full' },
   {path: 'pages/home', component: HomepageComponent},
   {
     path: 'pages/dashboard', 

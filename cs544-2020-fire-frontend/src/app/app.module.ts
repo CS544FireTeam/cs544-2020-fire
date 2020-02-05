@@ -55,7 +55,7 @@ import { CourseOfferingEditComponent } from './modules/courseOffering/course-off
   ],
   providers: [
     InterceptorService,
- //   httpIntercetptorProvider,
+    httpIntercetptorProvider,
     FireserviceService,
     MaterialModule,
     AuthGuardService,
