@@ -10,6 +10,7 @@ import edu.mum.cs.cs544.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -48,14 +49,17 @@ public class DbInitializer implements CommandLineRunner {
     
     @Autowired
     private RegistrationRepository regisRepository;
+    
+    @Autowired
+	PasswordEncoder passEncoder;
 
 
     @Override
     public void run(String... strings) throws Exception {
-    	User admin = new Admin("admin", "admin", "Peter", "Yellow");
-        User sys = new Admin("sys", "sys", "Jame", "Bond");
-        Student stud1 = new Student("stud1", "1", "Bob", "M", "100-111-2222", "11223345");
-        Faculty facu1 = new Faculty("facu1", "1", "Alice", "N");
+    	User admin = new Admin("admin", passEncoder.encode("admin"), "Peter", "Yellow");
+        User sys = new Admin("sys", passEncoder.encode("sys"), "Jame", "Bond");
+        Student stud1 = new Student("stud1", passEncoder.encode("1"), "Bob", "M", "100-111-2222", "11223345");
+        Faculty facu1 = new Faculty("facu1", passEncoder.encode("1"), "Alice", "N");
         
         userRepository.saveAll(Arrays.asList(admin, sys, stud1, facu1));
         
