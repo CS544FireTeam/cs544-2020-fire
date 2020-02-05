@@ -60,7 +60,7 @@ import {TimeSlotListComponent} from "./modules/timeSlot/time-slot-list/time-slot
   ],
   providers: [
     InterceptorService,
-    //   httpIntercetptorProvider,
+    httpIntercetptorProvider,
     FireserviceService,
     MaterialModule,
     AuthGuardService,
