@@ -4,6 +4,7 @@ import edu.mum.cs.cs544.model.Location;
 import edu.mum.cs.cs544.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,6 +18,7 @@ public class LocationController {
     @Autowired
     public LocationService locationService;
 
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
     public ResponseEntity<List<Location>> findAll() {
         return ResponseEntity.ok(locationService.getAll(null));
