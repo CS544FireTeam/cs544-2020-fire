@@ -1,7 +1,7 @@
 package edu.mum.cs.cs544.service;
 
-import edu.mum.cs.cs544.dao.LocationRepository;
-import edu.mum.cs.cs544.model.Location;
+import edu.mum.cs.cs544.dao.TimeSlotRepository;
+import edu.mum.cs.cs544.model.TimeSlot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -13,37 +13,37 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class LocationServiceImpl implements LocationService {
+public class TimeSlotServiceImpl implements TimeSlotService {
 
     @Autowired
-    LocationRepository locationRepository;
+    TimeSlotRepository timeSlotRepository;
 
     @Override
-    public List<Location> getAll(Sort sort) {
+    public List<TimeSlot> getAll(Sort sort) {
         if (sort == null) {
             sort = Sort.by(Direction.ASC, "description");
         }
-        return locationRepository.findAll(sort);
+        return timeSlotRepository.findAll(sort);
     }
 
     @Override
-    public Optional<Location> getById(int id) {
-        return locationRepository.findById(id);
+    public Optional<TimeSlot> getById(int id) {
+        return timeSlotRepository.findById(id);
     }
 
     @Override
-    public Location create(Location loc) {
-        return locationRepository.save(loc);
+    public TimeSlot create(TimeSlot loc) {
+        return timeSlotRepository.save(loc);
 
     }
 
     @Override
-    public Location update(Location loc) {
-        return locationRepository.save(loc);
+    public TimeSlot update(TimeSlot loc) {
+        return timeSlotRepository.save(loc);
     }
 
     @Override
     public void remove(int id) {
-        locationRepository.deleteById(id);
+        timeSlotRepository.deleteById(id);
 	}
 }

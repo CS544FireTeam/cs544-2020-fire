@@ -1,43 +1,62 @@
 package edu.mum.cs.cs544.web;
 
 import edu.mum.cs.cs544.model.Admin;
-import edu.mum.cs.cs544.service.admin.IAdminService;
+import edu.mum.cs.cs544.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 import javax.validation.Valid;
+import java.util.List;
+import java.util.Optional;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/admins")
 public class AdminController {
 
     @Autowired
-    private IAdminService adminService;
+    public AdminService adminService;
 
-    @GetMapping(value = "/admins")
-    public List<Admin> getAllAdmin(){
-        return this.adminService.findAll();
+    @GetMapping
+    public ResponseEntity<List<Admin>> findAll() {
+        return ResponseEntity.ok(adminService.getAll(null));
     }
 
-    @GetMapping(value = "/admins/{id}")
-    public Admin getAdmin(@PathVariable Integer id){
-        return this.adminService.findById(id);
+    @PostMapping
+    public ResponseEntity<Admin> create(@Valid @RequestBody Admin loc) {
+        return ResponseEntity.ok(adminService.create(loc));
     }
 
-    @PostMapping(value = "/admins")
-    public Admin saveAdmin(@RequestBody @Valid Admin admin){
-        return this.adminService.save(admin);
+    @GetMapping("/{id}")
+    public ResponseEntity<Admin> findById(@PathVariable int id) {
+        Optional<Admin> adminOptional = adminService.getById(id);
+        if (!adminOptional.isPresent()) {
+            System.out.println("Id " + id + " is not existed");
+            ResponseEntity.badRequest().build();
+        }
+
+        return ResponseEntity.ok(adminOptional.get());
     }
 
-    @PutMapping(value = "/admins/{id}")
-    public Admin updateAdmin(@RequestBody @Valid Admin admin){
-        return this.adminService.save(admin);
+    @PutMapping("/{id}")
+    public ResponseEntity<Admin> update(@PathVariable int id, @Valid @RequestBody Admin loc) {
+        if (!adminService.getById(id).isPresent()) {
+            System.out.println("Id " + id + " is not existed");
+            ResponseEntity.notFound().build();
+        }
+
+        return ResponseEntity.ok(adminService.update(loc));
     }
 
-    @DeleteMapping(value = "/admins/{id}")
-    public boolean deleteAdmin(@PathVariable Integer id){
-        return this.adminService.delete(id);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable int id) {
+        if (!adminService.getById(id).isPresent()) {
+            System.out.println("Id " + id + " is not existed");
+            ResponseEntity.badRequest().build();
+        }
+
+        adminService.remove(id);
+
+        return ResponseEntity.ok().build();
     }
 }
