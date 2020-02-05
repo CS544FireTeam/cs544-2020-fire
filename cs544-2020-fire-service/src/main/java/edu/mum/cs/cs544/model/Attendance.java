@@ -7,7 +7,8 @@ import java.util.Date;
 
 @Entity
 public class Attendance {
-    @Id
+	
+    @Id @GeneratedValue
     private Integer id;
     
     @ManyToOne(fetch = FetchType.LAZY) @NotNull

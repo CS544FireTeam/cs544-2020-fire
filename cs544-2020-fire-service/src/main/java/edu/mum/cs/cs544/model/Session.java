@@ -23,7 +23,13 @@ public class Session {
     public Session() {
     }
 
-    public Integer getId() {
+    public Session(CourseOffering c, TimeSlot t, Date d) {
+		this.courseOffering = c;
+		this.timeSlot = t;
+		this.date = d;
+	}
+
+	public Integer getId() {
         return id;
     }
 
