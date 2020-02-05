@@ -4,6 +4,7 @@ import java.util.Collections;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -21,6 +22,7 @@ import edu.mum.cs.cs544.dao.UserRepository;
 
 @Configuration
 @EnableWebSecurity
+@ConditionalOnProperty(name = "app.security", havingValue = "true")
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	private UserPrincipleDetailService userPrincipleDetailsService;
