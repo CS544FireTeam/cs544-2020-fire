@@ -20,8 +20,10 @@
     <mat-sidenav-container class="sevi-nav-container">
 
         <mat-sidenav-content>
-            <section *ngIf="page=='users'" class="section-list">
-                <app-userspage></app-userspage>
+            <section *ngIf="page=='users'" class="log-class">
+                <div>
+                    <app-userspage></app-userspage>
+                </div>
             </section>
 
             <section *ngIf="page=='course'" class="log-class">
@@ -41,7 +43,7 @@
             </section>
             <section *ngIf="page=='location'" class="log-class">
                 <div>
-                  <fire-location-home></fire-location-home>
+                    <fire-location-home></fire-location-home>
                 </div>
             </section>
         </mat-sidenav-content>

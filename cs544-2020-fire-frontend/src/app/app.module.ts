@@ -20,6 +20,7 @@ import {LocationHomeComponent} from './modules/location/location-home/location-h
 import {MaterialModule} from "./material-module";
 import {LocationListComponent} from './modules/location/location-list/location-list.component';
 import {CourseListComponent} from './modules/course/course-list/course-list.component';
+import { AuthGuardService } from './domain/services/AuthGuard/auth-guard.service';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import {CourseListComponent} from './modules/course/course-list/course-list.comp
     httpIntercetptorProvider,
     FireserviceService,
     MaterialModule,
+    AuthGuardService,
     BrowserAnimationsModule
   ],
   bootstrap: [AppComponent]

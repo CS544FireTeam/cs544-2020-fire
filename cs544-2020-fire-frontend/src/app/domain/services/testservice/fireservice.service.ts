@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UserRoleEnum } from '../../enums';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FireserviceService {
   baseUrl : String  = "http://localhost:8080";
+  roles = {
+   admin:UserRoleEnum.FACULTY,
+  };
   constructor(private http : HttpClient) { }
 
   createAccount(email: String, password: String) :Observable<any>{   

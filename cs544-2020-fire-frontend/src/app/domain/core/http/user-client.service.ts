@@ -8,7 +8,7 @@ import {User} from "../../models";
 })
 
 export class UserClientService {
-  private API_BASE = 'http://localhost:8000/';
+  private API_BASE = 'http://localhost:8080';
   private USER_API = 'users';
 
   constructor(private http: HttpClient) {
@@ -31,6 +31,7 @@ export class UserClientService {
   }
 
   modifyUser$(user: User): Observable<User> {
+    console.log(user);
     return this.http.put<User>(`${this.url}/${user.id}`, user);
   }
 

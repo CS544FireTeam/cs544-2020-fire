@@ -10,10 +10,10 @@ import { FireserviceService } from 'src/app/domain/services/testservice/fireserv
 })
 export class HomepageComponent implements OnInit {
   loginFormGroup:FormGroup;
-  fireForm = {
-    email: "",
-    password: ""
-  };
+  // fireForm = {
+  //   email: "",
+  //   password: ""
+  // };
 
   isLogin:Boolean = true;
   constructor(private formBuilder: FormBuilder,private router: Router,private fireService:FireserviceService) {
@@ -36,7 +36,7 @@ export class HomepageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.checkToken();
+    // this.checkToken();
   }
 
 
