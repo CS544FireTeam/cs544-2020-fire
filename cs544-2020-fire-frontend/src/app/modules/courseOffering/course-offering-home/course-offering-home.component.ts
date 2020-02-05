@@ -11,9 +11,9 @@ export class CourseOfferingHomeComponent implements OnInit {
 
   DEFAULT_EMPTY_COURSE_OFFERING = {
     id: undefined,
-    course: {},
-    location: {},
-    faculty: {},
+    course: undefined,
+    location: undefined,
+    faculty: undefined,
     startDate: new Date(),
     endDate: new Date(),
   };

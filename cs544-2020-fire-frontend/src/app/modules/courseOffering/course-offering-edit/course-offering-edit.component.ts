@@ -6,11 +6,17 @@ import User from "../../../domain/models/user.model";
 import {CourseClientService, LocationClientService} from "../../../domain/core/http";
 import {UserClientService} from "../../../domain/core/http/user-client.service";
 import {UserRoleEnum} from "../../../domain/enums";
+import {DateAdapter, MAT_DATE_FORMATS} from "@angular/material/core";
+import {APP_DATE_FORMATS, AppDateAdapter} from "../../shared/Utils/format-datepicker";
 
 @Component({
   selector: 'fire-course-offering-edit',
   templateUrl: './course-offering-edit.component.html',
-  styleUrls: ['./course-offering-edit.component.less']
+  styleUrls: ['./course-offering-edit.component.less'],
+  providers: [
+    {provide: DateAdapter, useClass: AppDateAdapter},
+    {provide: MAT_DATE_FORMATS, useValue: APP_DATE_FORMATS}
+  ]
 })
 export class CourseOfferingEditComponent implements OnInit {
 
@@ -32,15 +38,15 @@ export class CourseOfferingEditComponent implements OnInit {
               private courseClientService: CourseClientService,
               private userClientService: UserClientService,
               private locationClientService: LocationClientService,
-              ) {
+  ) {
   }
 
   get courseOffering(): CourseOffering {
     return this._courseOffering;
   }
 
-  courses : Course[];
-  locations: Location[] ;
+  courses: Course[];
+  locations: Location[];
   faculties: User[];
 
   ngOnInit() {
@@ -52,14 +58,15 @@ export class CourseOfferingEditComponent implements OnInit {
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
     });
-    this.courseClientService.getAllCourses$().subscribe( courses => {
+
+    this.courseClientService.getAllCourses$().subscribe(courses => {
       this.courses = courses;
     });
-    this.locationClientService.getAllLocations$().subscribe( locations => {
+    this.locationClientService.getAllLocations$().subscribe(locations => {
       this.locations = locations;
     });
-    this.userClientService.getAllUsers$().subscribe( courses => {
-      this.courses = courses.filter( user => user.role === UserRoleEnum.FACULTY);
+    this.userClientService.getAllUsers$().subscribe(uers => {
+      this.faculties = uers.filter(user => user.role === UserRoleEnum.FACULTY);
     })
   }
 
@@ -70,15 +77,24 @@ export class CourseOfferingEditComponent implements OnInit {
   }
 
   save() {
-    this.onAdd.emit(this.formGroup.value);
+    this.onAdd.emit(this.getCourseOffer());
   }
 
   update() {
-    this.onUpdate.emit(this.formGroup.value);
+    this.onUpdate.emit(this.getCourseOffer());
   }
 
   delete() {
     this.onDelete.emit(this.formGroup.value);
   }
 
+  private getCourseOffer() {
+    return {
+    ...this.formGroup.value,
+    }
+  }
+
+  compareObjects(o1: any, o2: any): boolean {
+    return o1.id === o2.id;
+  }
 }
