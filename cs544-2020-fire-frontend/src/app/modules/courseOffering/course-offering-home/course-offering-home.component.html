@@ -1,6 +1,6 @@
 <mat-tab-group [selectedIndex]="selectedTab" (selectedIndexChange)="selectedTab=$event">
   <mat-tab label="List Course Offering">
-    <fire-course-offering-list [courseOfferings]="currentCourseOffering"
+    <fire-course-offering-list [courseOfferings]="courseOfferings"
                       (onEdit)="onEditCourseOffering($event)"
                       (onAddNew)="onAddCourseOffering()"
     ></fire-course-offering-list>

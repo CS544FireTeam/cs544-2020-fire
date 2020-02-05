@@ -21,18 +21,18 @@ export class CourseOfferingHomeComponent implements OnInit {
   selectedTab = 0;
 
   currentCourseOffering: CourseOffering;
-  currentCourses: CourseOffering[];
+  courseOfferings: CourseOffering[];
 
   constructor(private courseOfferingClientService: CourseOfferingClientService) {
   }
 
   ngOnInit() {
-    this.loadListCourse();
+    this.loadListCourseOfferings();
   }
 
-  loadListCourse() {
-    this.courseOfferingClientService.getAllCourseOfferings$().subscribe(courses => {
-      this.currentCourses = courses;
+  loadListCourseOfferings() {
+    this.courseOfferingClientService.getAllCourseOfferings$().subscribe(courseOfferings => {
+      this.courseOfferings = courseOfferings;
       this.selectedTab = 0;
     })
   }
@@ -71,7 +71,7 @@ export class CourseOfferingHomeComponent implements OnInit {
     this.currentCourseOffering = {
       ...this.DEFAULT_EMPTY_COURSE_OFFERING,
     };
-    this.loadListCourse();
+    this.loadListCourseOfferings();
   }
 
 }

@@ -3,6 +3,9 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CourseOffering, Location} from "../../../domain/models";
 import Course from "../../../domain/models/course.model";
 import User from "../../../domain/models/user.model";
+import {CourseClientService, LocationClientService} from "../../../domain/core/http";
+import {UserClientService} from "../../../domain/core/http/user-client.service";
+import {UserRoleEnum} from "../../../domain/enums";
 
 @Component({
   selector: 'fire-course-offering-edit',
@@ -25,55 +28,20 @@ export class CourseOfferingEditComponent implements OnInit {
 
   private _courseOffering: CourseOffering;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+              private courseClientService: CourseClientService,
+              private userClientService: UserClientService,
+              private locationClientService: LocationClientService,
+              ) {
   }
 
   get courseOffering(): CourseOffering {
     return this._courseOffering;
   }
 
-  courses : Course[] = [
-    { id: 1, code: 'CS 109', abbr: 'MICROS Tour', name: 'Meeting with Compro students at MICROS company', description: 'Meeting with Compro students at MICROS company', },
-    { id: 2, code: 'CS 110', abbr: 'ICC Tour', name: 'Meeting with Compro students at ICC, Ohio', description: 'Meeting with Compro students at ICC, Ohio', },
-    { id: 3, code: 'CS000', abbr: 'JSearch', name: 'Job Search (Sept 04 students only)', description: 'Full-time Job Search', },
-    { id: 4, code: 'CS108', abbr: 'Des Moines Trip', name: 'Meeting with Compro Students by Dr. Gregory and Elaine Guthrie', description: 'Meeting with Compro Students by Dr. Gregory and Elaine Guthrie', },
-    { id: 5, code: 'CS208', abbr: 'Seattle Trip', name: 'Meeting with Compro Students by Dr. Gregory and Elaine Guthrie', description: 'Meeting with Compro Students by Dr. Gregory and Elaine Guthrie', },
-    { id: 6, code: 'CS220', abbr: 'Data Structures', name: 'Data Structures', description: 'NULL', },
-    { id: 7, code: 'CS390', abbr: 'FPP', name: 'Fundamental Programming Practices', description: 'Fundamentals of OO Programming', },
-    { id: 8, code: 'CS401', abbr: 'MPP', name: 'Modern Programming Practices', description: 'Modern Programming Practices', },
-  ];
-
-  locations: Location[] = [
-      {
-        id: 1,
-        description: 'Autopia',
-      },
-      {
-        id: 2,
-        description: 'Dorm',
-      }
-    ];
-
-  faculties: User[] = [
-    {
-      id: 1,
-      username: 'Lam Tang',
-      firstName: 'Lam',
-      lastName: 'Tang'
-    },
-    {
-      id: 2,
-      username: 'Mike',
-      firstName: 'Mike',
-      lastName: 'Tayson'
-    },
-    {
-      id: 3,
-      username: 'Hoang Thao',
-      firstName: 'Thao',
-      lastName: 'Hoang'
-    }
-  ];
+  courses : Course[];
+  locations: Location[] ;
+  faculties: User[];
 
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
@@ -84,6 +52,15 @@ export class CourseOfferingEditComponent implements OnInit {
       startDate: ['', Validators.required],
       endDate: ['', Validators.required],
     });
+    this.courseClientService.getAllCourses$().subscribe( courses => {
+      this.courses = courses;
+    });
+    this.locationClientService.getAllLocations$().subscribe( locations => {
+      this.locations = locations;
+    });
+    this.userClientService.getAllUsers$().subscribe( courses => {
+      this.courses = courses.filter( user => user.role === UserRoleEnum.FACULTY);
+    })
   }
 
   loadData(courseOffering: CourseOffering) {
