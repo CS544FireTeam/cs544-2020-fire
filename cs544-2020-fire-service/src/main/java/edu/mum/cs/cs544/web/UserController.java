@@ -4,6 +4,7 @@ import edu.mum.cs.cs544.model.User;
 import edu.mum.cs.cs544.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -16,6 +17,9 @@ public class UserController {
 
     @Autowired
     public UserService userService;
+    
+    @Autowired
+   	PasswordEncoder passEncoder;
 
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
@@ -24,6 +28,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> create(@Valid @RequestBody User loc) {
+    	loc.setPassword(passEncoder.encode(loc.getPassword()));
         return ResponseEntity.ok(userService.create(loc));
     }
 
@@ -44,7 +49,8 @@ public class UserController {
             System.out.println("Id " + id + " is not existed");
             ResponseEntity.notFound().build();
         }
-
+        //TODO no change password
+        loc.setPassword(passEncoder.encode(loc.getPassword()));
         return ResponseEntity.ok(userService.update(loc));
     }
 

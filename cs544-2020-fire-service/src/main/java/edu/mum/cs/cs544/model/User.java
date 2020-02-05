@@ -11,6 +11,8 @@ import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
@@ -23,7 +25,8 @@ public class User {
 	protected String username;
 	
 	@Column(length = 255)
-	@NotBlank
+	@NotBlank 
+	@JsonIgnore
 	protected String password;
 	
 	@Column(length = 255)

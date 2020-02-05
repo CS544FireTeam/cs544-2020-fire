@@ -108,6 +108,9 @@ public class DbInitializer implements CommandLineRunner {
         Registration r1 = new Registration(stud1, co1, new Date());
         
         regisRepository.saveAll(Arrays.asList(r1));
+        
+        
+        
         System.out.println(" -- Database has been initialized");
     }
 
