@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalTime;
+import java.util.Date;
 
 @Entity
 public class TimeSlot {
@@ -31,7 +32,13 @@ public class TimeSlot {
     public TimeSlot() {
     }
 
-    public Integer getId() {
+    public TimeSlot(String d, LocalTime b, LocalTime e) {
+		this.description = d;
+		this.beginTime = b;
+		this.endTime = e;
+	}
+
+	public Integer getId() {
         return id;
     }
 

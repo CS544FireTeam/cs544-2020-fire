@@ -25,8 +25,17 @@ public class Registration {
 	@Temporal(TemporalType.DATE) @NotNull
 	private Date registerDate; 
 	
+	@ManyToOne(fetch = FetchType.LAZY) @NotNull
+	private CourseOffering courseOffering;
+	
 	public Registration() {
 		
+	}
+
+	public Registration(Student s, CourseOffering c, Date d) {
+		this.student = s;
+		this.courseOffering = c;
+		this.registerDate = d;
 	}
 
 	public Integer getId() {
@@ -51,6 +60,14 @@ public class Registration {
 
 	public void setRegisterDate(Date registerDate) {
 		this.registerDate = registerDate;
+	}
+	
+	public CourseOffering getCourseOffering() {
+		return courseOffering;
+	}
+	
+	public void setCourseOffering(CourseOffering courseOffering) {
+		this.courseOffering = courseOffering;
 	}
 	
 	

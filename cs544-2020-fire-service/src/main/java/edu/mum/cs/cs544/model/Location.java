@@ -18,7 +18,11 @@ public class Location {
     public Location() {
     }
 
-    public Integer getId() {
+    public Location(String description) {
+		this.description = description;
+	}
+
+	public Integer getId() {
         return id;
     }
 
