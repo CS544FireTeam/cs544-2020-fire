@@ -12,6 +12,7 @@ import {CourseClientService} from "../../../domain/core/http";
 export class CourseHomeComponent implements OnInit {
 
   DEFAULT_EMPTY_COURSE = {
+    id: undefined,
     abbr: '',
     name: '',
     code: '',
