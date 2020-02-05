@@ -8,6 +8,9 @@
           Description is <strong>required</strong>
         </mat-error>
       </mat-form-field>
+      <mat-error align="end" *ngIf="formGroup.hasError('duplicateLocation')">
+        Location is <strong>duplicated</strong>
+      </mat-error>
     </form>
   </mat-card-content>
   <mat-card-actions>

@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Location} from "../../../domain/models";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 
 @Component({
   selector: 'fire-location-edit',
@@ -15,12 +15,16 @@ export class LocationEditComponent implements OnInit {
     this.loadData(this.location);
   }
 
+  @Input() set locations(locations: Location[]) {
+    this._locations = locations;
+  }
+
   @Output() onUpdate: EventEmitter<Location> = new EventEmitter();
   @Output() onAdd: EventEmitter<Location> = new EventEmitter();
   @Output() onDelete: EventEmitter<Location> = new EventEmitter();
 
   formGroup: FormGroup;
-
+  private _locations: Location[];
   private _location: Location;
 
   constructor(private formBuilder: FormBuilder) {
@@ -30,11 +34,15 @@ export class LocationEditComponent implements OnInit {
     return this._location;
   }
 
+  get locations() {
+    return this._locations;
+  }
+
   ngOnInit() {
     this.formGroup = this.formBuilder.group({
       id: [''],
       description: ['', Validators.required],
-    });
+    },  { validators: this.checkDuplicate });
   }
 
   loadData(location: Location) {
@@ -54,4 +62,15 @@ export class LocationEditComponent implements OnInit {
   delete() {
     this.onDelete.emit(this.formGroup.value);
   }
+
+  checkDuplicate: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+    if (this._locations) {
+      const description: string = control.controls.description.value;
+      const id = control.controls.id.value;
+      if (this.locations.filter(location => location.description.toUpperCase() === description.toUpperCase() && id != location.id).length > 0) {
+        return {duplicateLocation: true};
+      }
+    }
+    return null;
+  };
 }
