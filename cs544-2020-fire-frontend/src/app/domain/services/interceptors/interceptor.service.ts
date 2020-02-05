@@ -40,12 +40,14 @@ export class InterceptorService implements HttpInterceptor{
    }
     return next.handle(authReq).pipe(tap(success=>{
       
-      if(authReq.url=="http://localhost:8080/login"){
-         this.injector.get(Router).navigateByUrl('pages/dashboard');
-      }
+      // if(authReq.url=="http://localhost:8080/login"){
+      //    this.injector.get(Router).navigateByUrl('pages/dashboard');
+      // }
+      this.injector.get(Router).navigateByUrl('pages/dashboard');
      
     },err=>{
-      this.injector.get(Router).navigateByUrl('pages/home');
+      // this.injector.get(Router).navigateByUrl('pages/home');
+      this.injector.get(Router).navigateByUrl('pages/dashboard');
     }));
   }
 

@@ -7,12 +7,19 @@ import { CourseHomeComponent } from './modules/course/course-home/course-home.co
 import { CourseOfferingHomeComponent } from './modules/courseOffering/course-offering-home/course-offering-home.component';
 import { SessionHomeComponent } from './modules/session/session-home/session-home.component';
 import { LocationHomeComponent } from './modules/location/location-home/location-home.component';
+import { AuthGuardService } from './domain/services/AuthGuard/auth-guard.service';
+import { UserRoleEnum } from './domain';
 
 
 const routes: Routes = [
   {path: '', redirectTo: 'pages/dashboard', pathMatch: 'full' },
   {path: 'pages/home', component: HomepageComponent},
-  {path: 'pages/dashboard', component: DashboardComponent},
+  {
+    path: 'pages/dashboard', 
+    component: DashboardComponent,
+    // canActivate : [AuthGuardService],
+    // data : {roles:[UserRoleEnum.ADMIN]}
+   },
   {path: 'pages/users', component: UserHomeComponent},
   {path: 'pages/courses', component: CourseHomeComponent},
   {path: 'pages/courseoffering', component: CourseOfferingHomeComponent},

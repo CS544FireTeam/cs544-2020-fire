@@ -31,6 +31,7 @@ export class UserClientService {
   }
 
   modifyUser$(user: User): Observable<User> {
+    console.log(user);
     return this.http.put<User>(`${this.url}/${user.id}`, user);
   }
 
