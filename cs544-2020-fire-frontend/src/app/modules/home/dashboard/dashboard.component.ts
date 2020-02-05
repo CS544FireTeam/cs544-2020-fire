@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FireserviceService } from 'src/app/domain/services/testservice/fireservice.service';
+import { User } from 'src/app/domain';
 
 @Component({
   selector: 'fire-dashboard',
@@ -9,7 +11,10 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   page = "users";
   opened:boolean = false;
-  constructor(private router: Router) { }
+  user:User;
+  constructor(private router: Router,private fireService:FireserviceService) { 
+      // this.user = this.fireService.getUser();
+  }
 
   ngOnInit() {
   }

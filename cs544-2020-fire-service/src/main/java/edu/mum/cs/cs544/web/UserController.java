@@ -1,6 +1,8 @@
 package edu.mum.cs.cs544.web;
 
+import edu.mum.cs.cs544.model.Student;
 import edu.mum.cs.cs544.model.User;
+import edu.mum.cs.cs544.service.StudentService;
 import edu.mum.cs.cs544.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,10 +18,21 @@ public class UserController {
 
     @Autowired
     public UserService userService;
+    @Autowired
+    private StudentService studentService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @GetMapping
     public ResponseEntity<List<User>> findAll() {
         return ResponseEntity.ok(userService.getAll(null));
+    }
+
+    @PostMapping(value = "/register")
+    public String addStudent(@RequestBody Student user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        this.studentService.create(user);
+        return "success";
     }
 
     @PostMapping
