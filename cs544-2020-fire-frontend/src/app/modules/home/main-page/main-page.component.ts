@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {FireserviceService} from "../../../domain/services/testservice/fireservice.service";
 
 @Component({
   selector: 'fire-main-page',
@@ -9,13 +8,13 @@ import {FireserviceService} from "../../../domain/services/testservice/fireservi
 })
 export class MainPageComponent implements OnInit {
 
-  constructor(private router: Router){
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
   }
 
-  logout(){
+  logout() {
     localStorage.clear();
     this.router.navigate(['../']);
   }
