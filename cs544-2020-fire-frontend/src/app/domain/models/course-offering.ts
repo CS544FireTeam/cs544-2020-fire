@@ -7,6 +7,6 @@ export default interface CourseOffering {
   course?: Course;
   location?: Location;
   faculty?: User;
-  startDate?: string;
-  endDate?: string;
+  startDate?: Date;
+  endDate?: Date;
 }

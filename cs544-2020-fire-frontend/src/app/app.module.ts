@@ -22,6 +22,8 @@ import {LocationListComponent} from './modules/location/location-list/location-l
 import {CourseListComponent} from './modules/course/course-list/course-list.component';
 import {CourseEditComponent} from "./modules/course/course-edit/course-edit.component";
 import { LocationEditComponent } from './modules/location/location-edit/location-edit.component';
+import { CourseOfferingListComponent } from './modules/courseOffering/course-offering-list/course-offering-list.component';
+import { CourseOfferingEditComponent } from './modules/courseOffering/course-offering-edit/course-offering-edit.component';
 
 
 @NgModule({
@@ -38,6 +40,8 @@ import { LocationEditComponent } from './modules/location/location-edit/location
     CourseListComponent,
     CourseEditComponent,
     LocationEditComponent,
+    CourseOfferingListComponent,
+    CourseOfferingEditComponent,
   ],
   imports: [
     BrowserModule,

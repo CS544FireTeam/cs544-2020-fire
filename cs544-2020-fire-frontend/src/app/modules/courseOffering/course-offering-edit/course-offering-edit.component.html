@@ -1,0 +1,66 @@
+<mat-card align="start">
+  <mat-card-title>Course Offering</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="formGroup">
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Course*" formControlName="course">
+          <mat-option *ngFor="let course of courses" [value]="course">
+            {{course.code}} - {{course.abbr}}
+          </mat-option>
+        </mat-select>
+        <mat-error align="end" *ngIf="formGroup.get('course').hasError('required')">
+          Course is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Location*" formControlName="location">
+          <mat-option *ngFor="let location of locations" [value]="location">
+            {{location.description}}
+          </mat-option>
+        </mat-select>
+        <mat-error align="end" *ngIf="formGroup.get('location').hasError('required')">
+          Location is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-select placeholder="Faculty*" formControlName="faculty">
+          <mat-option *ngFor="let faculty of faculties" [value]="faculty">
+            {{faculty.firstName}}, {{faculty.lastName}}
+          </mat-option>
+        </mat-select>
+        <mat-error align="end" *ngIf="formGroup.get('faculty').hasError('required')">
+          Faculty is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Start Date" formControlName="startDate" [matDatepicker]="simpleStartDate">
+        <mat-datepicker-toggle matSuffix [for]="simpleStartDate">
+        </mat-datepicker-toggle>
+        <mat-datepicker #simpleStartDate></mat-datepicker>
+        <mat-error align="end" *ngIf="formGroup.get('startDate').hasError('required')">
+          Start Date is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <input matInput placeholder="End Date" formControlName="endDate" [matDatepicker]="simpleEndDate">
+        <mat-datepicker-toggle matSuffix [for]="simpleEndDate">
+        </mat-datepicker-toggle>
+        <mat-datepicker #simpleEndDate></mat-datepicker>
+        <mat-error align="end" *ngIf="formGroup.get('endDate').hasError('required')">
+          Start Date is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" [disabled]="formGroup.invalid" *ngIf="!courseOffering || !courseOffering.id" (click)="save()">Add</button>
+    <button mat-raised-button color="primary" [disabled]="formGroup.invalid"  *ngIf="courseOffering && courseOffering.id" (click)="update()">Update</button>
+    <button mat-raised-button color="primary" [disabled]="formGroup.invalid" *ngIf="courseOffering && courseOffering.id" (click)="delete()">Delete</button>
+  </mat-card-actions>
+</mat-card>
+{{formGroup.value | json}}

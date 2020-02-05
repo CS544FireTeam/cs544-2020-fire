@@ -15,7 +15,7 @@ export class SessionClientService {
   }
 
   private get url(): string {
-    return `${this.API_BASE}/${this.SESSION_API}`;
+    return `${this.API_BASE}${this.SESSION_API}`;
   }
 
   getAllSessions$(): Observable<Session[]> {

@@ -15,7 +15,7 @@ export class CourseOfferingClientService {
   }
 
   private get url(): string {
-    return `${this.API_BASE}/${this.COURSE_OFFERING_API}`;
+    return `${this.API_BASE}${this.COURSE_OFFERING_API}`;
   }
 
   getAllCourseOfferings$(): Observable<CourseOffering[]> {

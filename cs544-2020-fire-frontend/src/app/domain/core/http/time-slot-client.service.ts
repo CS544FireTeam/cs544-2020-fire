@@ -15,7 +15,7 @@ export class TimeSlotClientService {
   }
 
   private get url(): string {
-    return `${this.API_BASE}/${this.TIME_SLOT_API}`;
+    return `${this.API_BASE}${this.TIME_SLOT_API}`;
   }
 
   getAllTimeSlots$(): Observable<TimeSlot[]> {

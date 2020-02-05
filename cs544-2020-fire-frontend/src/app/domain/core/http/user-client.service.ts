@@ -15,7 +15,7 @@ export class UserClientService {
   }
 
   private get url(): string {
-    return `${this.API_BASE}/${this.USER_API}`;
+    return `${this.API_BASE}${this.USER_API}`;
   }
 
   getAllUsers$(): Observable<User[]> {

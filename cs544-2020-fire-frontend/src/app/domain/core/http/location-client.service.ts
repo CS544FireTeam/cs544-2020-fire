@@ -15,7 +15,7 @@ export class LocationClientService {
   }
 
   private get url(): string {
-    return `${this.API_BASE}/${this.USER_API}`;
+    return `${this.API_BASE}${this.USER_API}`;
   }
 
   getAllLocations$(): Observable<Location[]> {

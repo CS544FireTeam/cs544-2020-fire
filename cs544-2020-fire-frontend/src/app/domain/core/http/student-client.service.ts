@@ -15,7 +15,7 @@ export class StudentClientService {
   }
 
   private get url(): string {
-    return `${this.API_BASE}/${this.STUDENT_API}`;
+    return `${this.API_BASE}${this.STUDENT_API}`;
   }
 
   getAllStudents$(): Observable<Student[]> {

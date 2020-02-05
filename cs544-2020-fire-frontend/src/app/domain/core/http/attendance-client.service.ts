@@ -15,7 +15,7 @@ export class AttendanceClientService {
   }
 
   private get url(): string {
-    return `${this.API_BASE}/${this.ATTENDANCE_API}`;
+    return `${this.API_BASE}${this.ATTENDANCE_API}`;
   }
 
   searchAttendance$(attendanceSearchCriteria: AttendanceSearchCriteria): Observable<Attendance[]> {
