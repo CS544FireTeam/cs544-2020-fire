@@ -19,13 +19,13 @@ public class TimeSlot {
     @NotNull @Column(length = 255)
     private String description;
     
-    @DateTimeFormat(pattern="mm:ss")
-    @JsonFormat(pattern="mm:ss")
+    @DateTimeFormat(pattern="hh:mm")
+    @JsonFormat(pattern="hh:mm")
     @NotNull
     private LocalTime beginTime;
     
-    @DateTimeFormat(pattern="mm:ss")
-    @JsonFormat(pattern="mm:ss")
+    @DateTimeFormat(pattern="hh:mm")
+    @JsonFormat(pattern="hh:mm")
     @NotNull
     private LocalTime endTime;
 

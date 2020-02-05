@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import edu.mum.cs.cs544.model.TimeSlot;
 
 @Repository
-public interface TimeslotRepository extends JpaRepository<TimeSlot, Integer>{
+public interface TimeSlotRepository extends JpaRepository<TimeSlot, Integer>{
 
 }

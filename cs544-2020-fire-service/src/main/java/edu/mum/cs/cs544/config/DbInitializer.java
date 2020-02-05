@@ -41,7 +41,7 @@ public class DbInitializer implements CommandLineRunner {
     private LocationRepository locationRepository;
     
     @Autowired
-    private TimeslotRepository tsRepository;
+    private TimeSlotRepository tsRepository;
     
     @Autowired
     private AttendanceRepository attendanceRepository;
