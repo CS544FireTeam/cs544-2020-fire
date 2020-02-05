@@ -21,9 +21,6 @@ public class Student extends User {
     private String barcode;
 
 
-    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
-    private List<Registration> registrations = new ArrayList<>();
-
     public Student() {
 		super();
     }
@@ -50,11 +47,4 @@ public class Student extends User {
         this.barcode = barcode;
     }
 
-    public List<Registration> getRegistrations() {
-        return registrations;
-    }
-
-    public void setRegistrations(List<Registration> registrations) {
-        this.registrations = registrations;
-    }
 }
