@@ -62,7 +62,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 					.verify(token.replace(JwtProperties.TOKEN_PREFIX, "")).getSubject();
 			
 			if(userName!=null) {
-				User user = userRepo.findByusername(userName);
+				User user = userRepo.findByUsername(userName);
 				UserPrinciple principle = new UserPrinciple(user);
 				
 				UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(userName,null, principle.getAuthorities());

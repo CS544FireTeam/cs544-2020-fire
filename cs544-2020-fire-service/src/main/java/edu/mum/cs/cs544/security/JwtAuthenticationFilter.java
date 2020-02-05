@@ -86,7 +86,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		response.setCharacterEncoding("UTF-8");
 		JSONObject obj = new JSONObject();
 		obj.put("token",token);
-		obj.put("user",new Gson().toJson(userPrinciple.getUser(),User.class));
+		obj.put("user",new JSONObject(userPrinciple.getUser()));
 
 		out.print(obj);
 		out.flush();

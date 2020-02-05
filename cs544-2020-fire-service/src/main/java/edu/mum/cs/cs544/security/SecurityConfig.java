@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				.addFilter(new JwtAuthenticationFilter(authenticationManager()))
 				.addFilter(new JwtAuthorizationFilter(authenticationManager(), this.userRepo)).authorizeRequests()
-				.antMatchers("/login").permitAll().antMatchers("/register").permitAll().antMatchers("/api/**")
+				.antMatchers("/login").permitAll().antMatchers("/register/**").permitAll().antMatchers("/api/**")
 				.authenticated().and().httpBasic();
 	}
 
