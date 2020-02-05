@@ -21,6 +21,10 @@ import {MaterialModule} from "./material-module";
 import {LocationListComponent} from './modules/location/location-list/location-list.component';
 import {CourseListComponent} from './modules/course/course-list/course-list.component';
 import { AuthGuardService } from './domain/services/AuthGuard/auth-guard.service';
+import {CourseEditComponent} from "./modules/course/course-edit/course-edit.component";
+import { LocationEditComponent } from './modules/location/location-edit/location-edit.component';
+import { CourseOfferingListComponent } from './modules/courseOffering/course-offering-list/course-offering-list.component';
+import { CourseOfferingEditComponent } from './modules/courseOffering/course-offering-edit/course-offering-edit.component';
 
 
 @NgModule({
@@ -34,7 +38,11 @@ import { AuthGuardService } from './domain/services/AuthGuard/auth-guard.service
     SessionHomeComponent,
     LocationHomeComponent,
     LocationListComponent,
-    CourseListComponent
+    CourseListComponent,
+    CourseEditComponent,
+    LocationEditComponent,
+    CourseOfferingListComponent,
+    CourseOfferingEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,7 +55,7 @@ import { AuthGuardService } from './domain/services/AuthGuard/auth-guard.service
   ],
   providers: [
     InterceptorService,
-    httpIntercetptorProvider,
+ //   httpIntercetptorProvider,
     FireserviceService,
     MaterialModule,
     AuthGuardService,

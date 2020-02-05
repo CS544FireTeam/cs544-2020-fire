@@ -1,5 +1,6 @@
 package edu.mum.cs.cs544.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -7,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -14,12 +17,24 @@ public class User {
 
 	@Id @GeneratedValue
 	protected Integer id;
-
-	protected String username;
-	protected String password;
-	protected String firstName;
-	protected String lastname;
 	
+	@Column(unique = true, length = 200)
+	@NotBlank
+	protected String username;
+	
+	@Column(length = 255)
+	@NotBlank
+	protected String password;
+	
+	@Column(length = 255)
+	@NotBlank
+	protected String firstName;
+
+	@Column(length = 255)
+	@NotBlank
+	protected String lastName;
+	
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	protected UserRole role;
 	
@@ -27,11 +42,11 @@ public class User {
 		
 	}
 
-	public User(String username, String password, String firstName, String lastname, UserRole role) {
+	public User(String username, String password, String firstName, String lastName, UserRole role) {
 		this.username = username;
 		this.password = password;
 		this.firstName = firstName;
-		this.lastname = lastname;
+		this.lastName = lastName;
 		this.role = role;
 	}
 
@@ -67,12 +82,12 @@ public class User {
 		this.firstName = firstName;
 	}
 
-	public String getLastname() {
-		return lastname;
+	public String getLastName() {
+		return lastName;
 	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 	public UserRole getRole() {

@@ -66,7 +66,8 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "cs544-2020-fire-frontend:build"
+                        "browserTarget": "cs544-2020-fire-frontend:build",
+                        "proxyConfig": "src/proxy.conf.json"
                     },
                     "configurations": {
                         "production": {

@@ -1,6 +1,13 @@
 package edu.mum.cs.cs544.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalTime;
 import java.util.Date;
 
 @Entity
@@ -8,16 +15,30 @@ public class TimeSlot {
     @Id
     @GeneratedValue
     private Integer id;
+    
+    @NotNull @Column(length = 255)
     private String description;
-    @Temporal(TemporalType.TIME)
-    private Date beginTime;
-    @Temporal(TemporalType.TIME)
-    private Date endTime;
+    
+    @DateTimeFormat(pattern="mm:ss")
+    @JsonFormat(pattern="mm:ss")
+    @NotNull
+    private LocalTime beginTime;
+    
+    @DateTimeFormat(pattern="mm:ss")
+    @JsonFormat(pattern="mm:ss")
+    @NotNull
+    private LocalTime endTime;
 
     public TimeSlot() {
     }
 
-    public Integer getId() {
+    public TimeSlot(String d, LocalTime b, LocalTime e) {
+		this.description = d;
+		this.beginTime = b;
+		this.endTime = e;
+	}
+
+	public Integer getId() {
         return id;
     }
 
@@ -33,19 +54,22 @@ public class TimeSlot {
         this.description = description;
     }
 
-    public Date getBeginTime() {
-        return beginTime;
-    }
+	public LocalTime getBeginTime() {
+		return beginTime;
+	}
 
-    public void setBeginTime(Date beginTime) {
-        this.beginTime = beginTime;
-    }
+	public void setBeginTime(LocalTime beginTime) {
+		this.beginTime = beginTime;
+	}
 
-    public Date getEndTime() {
-        return endTime;
-    }
+	public LocalTime getEndTime() {
+		return endTime;
+	}
 
-    public void setEndTime(Date endTime) {
-        this.endTime = endTime;
-    }
+	public void setEndTime(LocalTime endTime) {
+		this.endTime = endTime;
+	}
+
+	
+
 }

@@ -8,14 +8,14 @@ import {Session} from "../../models";
 })
 
 export class SessionClientService {
-  private API_BASE = 'http://localhost:8000/';
+  private API_BASE = '/api/';
   private SESSION_API = 'sessions';
 
   constructor(private http: HttpClient) {
   }
 
   private get url(): string {
-    return `${this.API_BASE}/${this.SESSION_API}`;
+    return `${this.API_BASE}${this.SESSION_API}`;
   }
 
   getAllSessions$(): Observable<Session[]> {

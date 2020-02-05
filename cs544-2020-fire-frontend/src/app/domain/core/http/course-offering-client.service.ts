@@ -8,14 +8,14 @@ import {CourseOffering} from "../../models";
 })
 
 export class CourseOfferingClientService {
-  private API_BASE = 'http://localhost:8000/';
+  private API_BASE = '/api/';
   private COURSE_OFFERING_API = 'course-offering';
 
   constructor(private http: HttpClient) {
   }
 
   private get url(): string {
-    return `${this.API_BASE}/${this.COURSE_OFFERING_API}`;
+    return `${this.API_BASE}${this.COURSE_OFFERING_API}`;
   }
 
   getAllCourseOfferings$(): Observable<CourseOffering[]> {

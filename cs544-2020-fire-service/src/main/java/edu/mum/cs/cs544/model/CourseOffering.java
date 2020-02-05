@@ -1,6 +1,8 @@
 package edu.mum.cs.cs544.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.util.Date;
 
 @Entity
@@ -8,15 +10,20 @@ public class CourseOffering {
     @Id
     @GeneratedValue
     private Integer id;
-    @ManyToOne
+    
+    @ManyToOne(fetch = FetchType.LAZY) @NotNull
     private Course course;
-    @ManyToOne
+    
+    @ManyToOne(fetch = FetchType.LAZY)  @NotNull
     private Location location;
-    @ManyToOne
+    
+    @ManyToOne(fetch = FetchType.LAZY) @NotNull
     private Faculty faculty;
-    @Temporal(TemporalType.DATE)
+    
+    @Temporal(TemporalType.DATE) @NotNull
     private Date startDate;
-    @Temporal(TemporalType.DATE)
+    
+    @Temporal(TemporalType.DATE) @NotNull
     private Date endDate;
 
     public CourseOffering() {

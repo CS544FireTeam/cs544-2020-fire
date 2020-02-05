@@ -1,20 +1,25 @@
-import {AfterViewInit, Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {PagingBaseComponent} from "../../shared/components/paging-base.component";
-import CheckedItem from "../../shared/models/checked-item.model";
 import Course from "../../../domain/models/course.model";
-
-interface CourseItem extends CheckedItem, Course {
-  abbr: string;
-}
-
 
 @Component({
   selector: 'fire-course-list',
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.less']
 })
-export class CourseListComponent  extends PagingBaseComponent<CourseItem> implements OnInit , AfterViewInit {
+export class CourseListComponent extends PagingBaseComponent<Course> implements OnInit, AfterViewInit {
 
+  @Input() set courses(courses: Course[]) {
+    this._courses = courses;
+    super.ngOnInit(courses);
+  }
+
+  @Output() onEdit: EventEmitter<Course> = new EventEmitter();
+  @Output() onAddNew: EventEmitter<Course> = new EventEmitter();
+
+  _courses: Course[];
+
+<<<<<<< HEAD
 //=CONCAT("{ code: '", A1,"', abbr: '", B1, ", name: '", C1, "description: '", D1, ", isChecked: false,")
   //TODO will be integrate with BK
   mockData: CourseItem[] = [
@@ -53,14 +58,29 @@ export class CourseListComponent  extends PagingBaseComponent<CourseItem> implem
     ;
    constructor() {
     super(['action', 'number', 'abbr', 'name', 'description']);
+=======
+  get courses() {
+    return this._courses;
+  }
+
+  constructor() {
+    super(['number', 'abbr', 'name', 'description', 'actionButton']);
+>>>>>>> 2d8deb5f896ab27709c9337a28c4c2b374b062c6
   }
 
   ngOnInit() {
-    super.ngOnInit(this.mockData);
+    super.ngOnInit(this.courses);
   }
 
   ngAfterViewInit(): void {
     super.ngAfterViewInit();
-}
+  }
 
+  onEditClick(course) {
+    this.onEdit.emit(course)
+  }
+
+  onAddClick() {
+    this.onAddNew.emit();
+  }
 }

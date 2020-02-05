@@ -8,14 +8,14 @@ import {Location} from "../../models";
 })
 
 export class LocationClientService {
-  private API_BASE = 'http://localhost:8000/';
+  private API_BASE = '/api/';
   private USER_API = 'locations';
 
   constructor(private http: HttpClient) {
   }
 
   private get url(): string {
-    return `${this.API_BASE}/${this.USER_API}`;
+    return `${this.API_BASE}${this.USER_API}`;
   }
 
   getAllLocations$(): Observable<Location[]> {

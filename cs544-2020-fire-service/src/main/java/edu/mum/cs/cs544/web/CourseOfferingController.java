@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @RestController
+@RequestMapping("/api")
 public class CourseOfferingController {
 
     @Autowired
@@ -24,12 +27,12 @@ public class CourseOfferingController {
     }
 
     @PostMapping(value = "/course-offering")
-    public CourseOffering saveCourseOffering(CourseOffering courseOffering){
+    public CourseOffering saveCourseOffering(@Valid CourseOffering courseOffering){
         return this.courseOfferingService.save(courseOffering);
     }
 
     @PutMapping(value = "/course-offering/{id}")
-    public CourseOffering updateCourseOffering(CourseOffering courseOffering){
+    public CourseOffering updateCourseOffering(@Valid CourseOffering courseOffering){
         return this.courseOfferingService.save(courseOffering);
     }
 

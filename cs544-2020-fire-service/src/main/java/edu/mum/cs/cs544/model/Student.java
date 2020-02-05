@@ -2,27 +2,34 @@ package edu.mum.cs.cs544.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Student extends User {
 
+	@NotBlank //TODO update by format requiment
+	@Column(length = 255, unique = true)
     private String studentCode;
+	
+	@NotBlank
+	@Column(length = 20)
     private String barcode;
 
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
     private List<Registration> registrations = new ArrayList<>();
 
     public Student() {
 		super();
     }
 
-    public Student(String username, String password, String firstName, String lastname, String studentCode, String barcode) {
-        super(username, password, firstName, lastname, UserRole.STUDENT);
+    public Student(String username, String password, String firstName, String lastName, String studentCode, String barcode) {
+        super(username, password, firstName, lastName, UserRole.STUDENT);
         this.studentCode = studentCode;
         this.barcode = barcode;
     }

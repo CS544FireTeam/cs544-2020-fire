@@ -8,14 +8,14 @@ import {TimeSlot} from "../../models";
 })
 
 export class TimeSlotClientService {
-  private API_BASE = 'http://localhost:8000/';
+  private API_BASE = '/api/';
   private TIME_SLOT_API = 'time-slots';
 
   constructor(private http: HttpClient) {
   }
 
   private get url(): string {
-    return `${this.API_BASE}/${this.TIME_SLOT_API}`;
+    return `${this.API_BASE}${this.TIME_SLOT_API}`;
   }
 
   getAllTimeSlots$(): Observable<TimeSlot[]> {

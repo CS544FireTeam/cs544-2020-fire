@@ -7,7 +7,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 @RestController
+@RequestMapping("/api")
 public class AdminController {
 
     @Autowired
@@ -24,12 +27,12 @@ public class AdminController {
     }
 
     @PostMapping(value = "/admins")
-    public Admin saveAdmin(Admin admin){
+    public Admin saveAdmin(@Valid Admin admin){
         return this.adminService.save(admin);
     }
 
     @PutMapping(value = "/admins/{id}")
-    public Admin updateAdmin(Admin admin){
+    public Admin updateAdmin(@Valid Admin admin){
         return this.adminService.save(admin);
     }
 

@@ -1,1 +1,16 @@
-<fire-location-list></fire-location-list>
+<mat-tab-group [selectedIndex]="selectedTab" (selectedIndexChange)="selectedTab=$event">
+  <mat-tab label="List Location">
+    <fire-location-list [locations]="locations"
+                        (onEdit)="onEditLocation($event)"
+                        (onAddNew)="onAddLocation()"
+    ></fire-location-list>
+  </mat-tab>
+  <mat-tab label="Detail">
+    <fire-location-edit [location]="currentLocation"
+                        (onAdd)="saveLocation($event)"
+                        (onDelete)="deleteLocation($event)"
+                        (onUpdate)="updateLocation($event)"
+
+    ></fire-location-edit>
+  </mat-tab>
+</mat-tab-group>

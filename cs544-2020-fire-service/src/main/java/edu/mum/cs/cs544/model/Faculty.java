@@ -13,7 +13,7 @@ public class Faculty extends User {
         this.username = username;
         this.password = password;
         this.firstName = fname;
-        this.lastname = lname;
+        this.lastName = lname;
         this.role = UserRole.FACULTY;
     }
 }

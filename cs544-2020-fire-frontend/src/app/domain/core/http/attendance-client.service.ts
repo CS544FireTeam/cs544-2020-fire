@@ -8,14 +8,14 @@ import {Attendance, AttendanceSearchCriteria} from "../../models";
 })
 
 export class AttendanceClientService {
-  private API_BASE = 'http://localhost:8000/';
+  private API_BASE = '/api/';
   private ATTENDANCE_API = 'attendances';
 
   constructor(private http: HttpClient) {
   }
 
   private get url(): string {
-    return `${this.API_BASE}/${this.ATTENDANCE_API}`;
+    return `${this.API_BASE}${this.ATTENDANCE_API}`;
   }
 
   searchAttendance$(attendanceSearchCriteria: AttendanceSearchCriteria): Observable<Attendance[]> {

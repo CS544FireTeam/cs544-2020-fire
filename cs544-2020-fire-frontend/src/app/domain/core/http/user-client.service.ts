@@ -8,14 +8,14 @@ import {User} from "../../models";
 })
 
 export class UserClientService {
-  private API_BASE = 'http://localhost:8080';
+  private API_BASE = '/api/';
   private USER_API = 'users';
 
   constructor(private http: HttpClient) {
   }
 
   private get url(): string {
-    return `${this.API_BASE}/${this.USER_API}`;
+    return `${this.API_BASE}${this.USER_API}`;
   }
 
   getAllUsers$(): Observable<User[]> {

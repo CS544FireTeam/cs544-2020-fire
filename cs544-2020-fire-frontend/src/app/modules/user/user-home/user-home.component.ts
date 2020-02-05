@@ -41,7 +41,7 @@ export class UserHomeComponent implements OnInit {
   fireForm:User = {
     username: "",
     firstName: "",
-    lastname:"",
+    lastName:"",
     id:null,
   };
   opened:boolean = false;
@@ -75,7 +75,7 @@ export class UserHomeComponent implements OnInit {
         ])
       ),
       lastName : new FormControl(
-        fireForm.lastname,
+        fireForm.lastName,
         Validators.compose([
           Validators.required,
         ])
@@ -172,7 +172,7 @@ export class UserHomeComponent implements OnInit {
 
   updateAccount(details:any){
     this.fireForm.username = details.username;
-    this.fireForm.lastname = details.lastName;
+    this.fireForm.lastName = details.lastName;
     this.fireForm.firstName = details.firstName;
     this.userClientService.modifyUser$(this.fireForm).subscribe((res)=>{
       this.updateLocal();
