@@ -12,7 +12,7 @@ export class FireserviceService {
   roles = {
    admin:UserRoleEnum.FACULTY,
   };
-  
+  user:User;
 
   constructor(private http : HttpClient) {}
 

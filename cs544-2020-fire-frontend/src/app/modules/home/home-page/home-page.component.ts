@@ -43,8 +43,7 @@ export class HomepageComponent implements OnInit {
 
   private checkToken(){
     if(localStorage.getItem('token')!=null){
-      this.user= (JSON.parse(localStorage.getItem('user')))
-      this.firstLoginAttempt(this.user.username,this.user.password)
+      this.firstLoginAttempt(localStorage.getItem('email'),localStorage.getItem('password'))
       return;
     }
     console.log("Not Logged in")
@@ -53,7 +52,7 @@ export class HomepageComponent implements OnInit {
   private firstLoginAttempt(username:String , password: String){
     this.fireService.firstLoginAttempt(username,password).subscribe(
       res => {
-        localStorage.setItem("user",res.user);
+        this.fireService.user =res.user;
       }
     );
   }
@@ -67,12 +66,10 @@ export class HomepageComponent implements OnInit {
       res => {
         if(res.token!=null){
           localStorage.setItem("token",res.token);
-           localStorage.setItem("user",res.user);
-          console.log(localStorage.getItem('user'))
           localStorage.setItem("email",details.email.toString());
           localStorage.setItem("password",details.password.toString());
+          this.fireService.user =res.user;
         }else{
-          // this.showErr = true;
         }
 
       }
