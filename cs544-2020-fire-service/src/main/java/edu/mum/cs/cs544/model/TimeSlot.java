@@ -7,10 +7,11 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import java.time.LocalTime;
-import java.util.Date;
+import edu.mum.cs.cs544.validation.ValidTime;
 
-@Entity
+import java.time.LocalTime;
+
+@Entity @ValidTime
 public class TimeSlot {
     @Id
     @GeneratedValue
