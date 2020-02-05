@@ -1,34 +1,40 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HomepageComponent } from './modules/home/home-page/home-page.component';
-import { DashboardComponent } from './modules/home/dashboard/dashboard.component';
-import { UserHomeComponent } from './modules/user/user-home/user-home.component';
-import { CourseHomeComponent } from './modules/course/course-home/course-home.component';
-import { CourseOfferingHomeComponent } from './modules/courseOffering/course-offering-home/course-offering-home.component';
-import { SessionHomeComponent } from './modules/session/session-home/session-home.component';
-import { LocationHomeComponent } from './modules/location/location-home/location-home.component';
-import { AuthGuardService } from './domain/services/AuthGuard/auth-guard.service';
-import { UserRoleEnum } from './domain';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {MainPageComponent} from "./modules/home/main-page/main-page.component";
 
 
 const routes: Routes = [
-  {path: '', redirectTo: 'pages/home', pathMatch: 'full' },
-  {path: 'pages/home', component: HomepageComponent},
   {
-    path: 'pages/dashboard', 
-    component: DashboardComponent,
-    // canActivate : [AuthGuardService],
-    // data : {roles:[UserRoleEnum.ADMIN]}
-   },
-  {path: 'pages/users', component: UserHomeComponent},
-  {path: 'pages/courses', component: CourseHomeComponent},
-  {path: 'pages/courseoffering', component: CourseOfferingHomeComponent},
-  {path: 'pages/session', component: SessionHomeComponent},
-  {path: 'pages/location', component: LocationHomeComponent},
+    path: '',
+    component: MainPageComponent,
+    children: [
+      {
+        path: 'users',
+        loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule),
+      },
+      {
+        path: 'courses',
+        loadChildren: () => import('./modules/course/course.module').then(m => m.CourseModule),
+      },
+      {
+        path: 'courseoffering',
+        loadChildren: () => import('./modules/course/course.module').then(m => m.CourseModule),
+      },
+      {
+        path: 'location',
+        loadChildren: () => import('./modules/location/location.module').then(m => m.LocationModule),
+      },
+      {
+        path: 'timeslot',
+        loadChildren: () => import('./modules/timeSlot/time-slot.module').then(m => m.TimeSlotModule),
+      },
+    ]
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
