@@ -27,12 +27,12 @@ public class UserController {
     }
 
     @PostMapping(value = "/users")
-    public User saveUser(@Valid User user){
+    public User saveUser(@RequestBody @Valid User user){
         return this.userService.save(user);
     }
 
     @PutMapping(value = "/users/{id}")
-    public User updateUser(@Valid User user){
+    public User updateUser(@RequestBody @Valid User user){
         return this.userService.save(user);
     }
 

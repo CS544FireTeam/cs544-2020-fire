@@ -27,12 +27,12 @@ public class FacultyController {
     }
 
     @PostMapping(value = "/faculties")
-    public Faculty saveFaculty(@Valid Faculty faculty){
+    public Faculty saveFaculty(@RequestBody @Valid Faculty faculty){
         return this.facultyService.save(faculty);
     }
 
     @PutMapping(value = "/faculties/{id}")
-    public Faculty updateFaculty(@Valid Faculty faculty){
+    public Faculty updateFaculty(@RequestBody @Valid Faculty faculty){
         return this.facultyService.save(faculty);
     }
 

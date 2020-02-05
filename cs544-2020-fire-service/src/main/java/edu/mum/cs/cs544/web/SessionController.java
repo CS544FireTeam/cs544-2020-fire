@@ -27,12 +27,12 @@ public class SessionController {
     }
 
     @PostMapping(value = "/session")
-    public Session saveSession(@Valid Session session){
+    public Session saveSession(@RequestBody @Valid Session session){
         return this.sessionService.save(session);
     }
 
     @PutMapping(value = "/session/{id}")
-    public Session updateSession(@Valid Session session){
+    public Session updateSession(@RequestBody @Valid Session session){
         return this.sessionService.save(session);
     }
 
