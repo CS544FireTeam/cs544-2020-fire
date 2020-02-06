@@ -10,11 +10,10 @@ import {InterceptorService} from './domain/services/interceptors/interceptor.ser
 import {FireserviceService} from './domain/services/testservice/fireservice.service';
 
 import {MaterialModule} from "./material-module";
-import {AuthGuardService} from './domain/services/AuthGuard/auth-guard.service';
 import {httpIntercetptorProvider} from "./domain/services/interceptors";
 import {MainPageComponent} from "./modules/home/main-page/main-page.component";
 import {HomepageComponent} from "./modules/home/home-page/home-page.component";
-
+import {JwtHelperService, JwtModule} from "@auth0/angular-jwt";
 
 @NgModule({
   declarations: [
@@ -30,14 +29,21 @@ import {HomepageComponent} from "./modules/home/home-page/home-page.component";
     FormsModule,
     HttpClientModule,
     MaterialModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('access_token');
+        },
+      }
+    })
   ],
   providers: [
     InterceptorService,
     httpIntercetptorProvider,
     FireserviceService,
     MaterialModule,
-    AuthGuardService,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    JwtHelperService,
   ],
   bootstrap: [AppComponent]
 })

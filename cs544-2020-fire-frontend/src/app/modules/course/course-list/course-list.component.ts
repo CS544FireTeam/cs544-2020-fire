@@ -14,6 +14,7 @@ export class CourseListComponent extends PagingBaseComponent<Course> implements 
     super.ngOnInit(courses);
   }
 
+  @Input() isAdmin: false;
   @Output() onEdit: EventEmitter<Course> = new EventEmitter();
   @Output() onAddNew: EventEmitter<Course> = new EventEmitter();
 

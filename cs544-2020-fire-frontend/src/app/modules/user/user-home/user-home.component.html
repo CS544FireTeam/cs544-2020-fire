@@ -1,151 +1,160 @@
 <div class="main-panel">
-    <mat-sidenav-container class="sevi-nav-container">
+  <mat-sidenav-container class="sevi-nav-container">
+    <mat-sidenav position="end" #sidenav [opened]=opened mode="side" class="sevi-nav-content">
+      <section class="action-section" *ngIf="opened">
+        <form [formGroup]="updateFormGroup" (ngSubmit)="updateAccount(updateFormGroup.value)" *ngIf="!isLogin">
+          <div class="action-hover close-icon">
+            <mat-icon (click)="close()">close</mat-icon>
+          </div>
+          <br>
+          <mat-form-field class="mat-form-group">
+            <mat-label>username</mat-label>
+            <input type="text" matInput formControlName="username">
+            <!-- <mat-error *ngIf="updateFormGroup.get('email').errors.required">Email is required. </mat-error>
+            <mat-error *ngIf="updateFormGroup.get('email').errors.pattern">Email is invalid. </mat-error> -->
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
 
 
-        <mat-sidenav position="end" #sidenav [opened]=opened mode="side" class="sevi-nav-content">
-            <section class="action-section" *ngIf="opened">
-                <form [formGroup]="updateFormGroup" (ngSubmit)="updateAccount(updateFormGroup.value)" *ngIf="!isLogin">
-                    <div class="action-hover close-icon">
-                        <mat-icon (click)="close()">close</mat-icon>
-                    </div><br>
-                    <mat-form-field class="mat-form-group">
-                        <mat-label>username</mat-label>
-                        <input type="text" matInput formControlName="username">
-                        <!-- <mat-error *ngIf="updateFormGroup.get('email').errors.required">Email is required. </mat-error>
-                        <mat-error *ngIf="updateFormGroup.get('email').errors.pattern">Email is invalid. </mat-error> -->
-                        <mat-icon matSuffix>person</mat-icon>
-                    </mat-form-field>
+          <mat-form-field class="mat-form-group">
+            <mat-label>firstName</mat-label>
+            <input type="text" matInput formControlName="firstName">
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+
+          <mat-form-field class="mat-form-group">
+            <mat-label>lastname</mat-label>
+            <input type="text" matInput formControlName="lastName">
+            <mat-icon matSuffix>person</mat-icon>
+          </mat-form-field>
+          <br>
+
+          <button mat-raised-button class="mat-btn" color="primary" type="submit" [disabled]="updateFormGroup.invalid">
+            Submit
+          </button>
+        </form>
+      </section>
+    </mat-sidenav>
 
 
-                    <mat-form-field class="mat-form-group">
-                        <mat-label>firstName</mat-label>
-                        <input type="text" matInput formControlName="firstName">
-                        <mat-icon matSuffix>person</mat-icon>
-                    </mat-form-field>
+    <mat-sidenav-content>
+      <mat-tab-group (selectedTabChange)="onchange()">
+        <mat-tab label="Users">
+          <ng-template matTabContent>
+            <div class="item-container">
+              <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" multiTemplateDataRows>
+                <ng-container matColumnDef="position" style="width: 10%;">
+                  <th mat-header-cell *matHeaderCellDef> No.</th>
+                  <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                </ng-container>
 
-                    <mat-form-field class="mat-form-group">
-                        <mat-label>lastname</mat-label>
-                        <input type="text" matInput formControlName="lastName">
-                        <mat-icon matSuffix>person</mat-icon>
-                    </mat-form-field><br>
+                <ng-container matColumnDef="Username" style="width: 30%">
+                  <th mat-header-cell *matHeaderCellDef>User Name</th>
+                  <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+                </ng-container>
 
-                    <button mat-raised-button class="mat-btn" color="primary" type="submit" [disabled]="updateFormGroup.invalid">Submit</button>
-                </form>
-            </section>
-        </mat-sidenav>
+                <ng-container matColumnDef="Firstname">
+                  <th mat-header-cell *matHeaderCellDef>First Name</th>
+                  <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+                </ng-container>
 
+                <ng-container matColumnDef="Lastname">
+                  <th mat-header-cell *matHeaderCellDef>Last Name</th>
+                  <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+                </ng-container>
 
-        <mat-sidenav-content>
-            <mat-tab-group (selectedTabChange)="onchange()">
-                <mat-tab label="AllUsers">
-                    <ng-template matTabContent>
-                        <div class="item-container">
-                            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" multiTemplateDataRows>
-                                <ng-container matColumnDef="position" style="width: 10%;">
-                                    <th mat-header-cell *matHeaderCellDef> No. </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.position}} </td>
-                                </ng-container>
+                <ng-container matColumnDef="Role">
+                  <th mat-header-cell *matHeaderCellDef> Role</th>
+                  <td mat-cell *matCellDef="let element"> {{element.role}} </td>
+                </ng-container>
 
-                                <ng-container matColumnDef="Username" style="width: 30%">
-                                    <th mat-header-cell *matHeaderCellDef> Username </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.username}} </td>
-                                </ng-container>
+                <ng-container matColumnDef="Edit">
+                  <th mat-header-cell *matHeaderCellDef style="width: 5%"> Edit</th>
+                  <td mat-cell *matCellDef="let element">
+                    <button class="action-hover" [disabled]="!isAdmin" mat-button (click)="editUser(element)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
 
-                                <ng-container matColumnDef="Firstname">
-                                    <th mat-header-cell *matHeaderCellDef> Firstname </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
-                                </ng-container>
+                <ng-container matColumnDef="Delete">
+                  <th mat-header-cell *matHeaderCellDef  style="width: 5%"> Delete</th>
+                  <td mat-cell *matCellDef="let element">
+                    <button class="action-hover" [disabled]="!isAdmin" mat-button (click)="deleteUser(element)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
 
-                                <ng-container matColumnDef="Lastname">
-                                    <th mat-header-cell *matHeaderCellDef> Lastname </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.lastname}} </td>
-                                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+              </table>
+            </div>
+          </ng-template>
+        </mat-tab>
 
-                                <ng-container matColumnDef="Role">
-                                    <th mat-header-cell *matHeaderCellDef> Role </th>
-                                    <td mat-cell *matCellDef="let element"> {{element.role}} </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="Edit">
-                                    <th mat-header-cell *matHeaderCellDef> Edit </th>
-                                    <td mat-cell *matCellDef="let element">
-                                        <mat-icon class="action-hover" (click)="editUser(element)">edit</mat-icon>
-                                    </td>
-                                </ng-container>
-
-                                <ng-container matColumnDef="Delete">
-                                    <th mat-header-cell *matHeaderCellDef> Delete </th>
-                                    <td mat-cell *matCellDef="let element">
-                                        <mat-icon class="action-hover" (click)="deleteUser(element)">delete</mat-icon>
-                                    </td>
-                                </ng-container>
-
-                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-                            </table>
-                        </div>
-                    </ng-template>
-                </mat-tab>
-
-                <mat-tab label="Add New User">
-                    <ng-template matTabContent>
-                        <div class="add-new">
-                            <form [formGroup]="createFormGroup" (ngSubmit)="createAccount(createFormGroup.value)" *ngIf="!isLogin">
-                                <div class="center">
-                                    <b>Add New Student</b>
-                                </div><br>
-                                <mat-form-field class="mat-form-group">
-                                    <mat-label>username</mat-label>
-                                    <input type="text" matInput formControlName="username">
-                                    <!-- <mat-error *ngIf="updateFormGroup.get('email').errors.required">Email is required. </mat-error>
-                                    <mat-error *ngIf="updateFormGroup.get('email').errors.pattern">Email is invalid. </mat-error> -->
-                                    <mat-icon matSuffix>person</mat-icon>
-                                </mat-form-field>
+        <mat-tab label="Add New User" [disabled]="!isAdmin">
+          <ng-template matTabContent>
+            <div class="add-new">
+              <form [formGroup]="createFormGroup" (ngSubmit)="createAccount(createFormGroup.value)" *ngIf="!isLogin">
+                <div class="center">
+                  <b>Add New Student</b>
+                </div>
+                <br>
+                <mat-form-field class="mat-form-group">
+                  <mat-label>username</mat-label>
+                  <input type="text" matInput formControlName="username">
+                  <!-- <mat-error *ngIf="updateFormGroup.get('email').errors.required">Email is required. </mat-error>
+                  <mat-error *ngIf="updateFormGroup.get('email').errors.pattern">Email is invalid. </mat-error> -->
+                  <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
 
 
-                                <mat-form-field class="mat-form-group">
-                                    <mat-label>firstName</mat-label>
-                                    <input type="text" matInput formControlName="firstName">
-                                    <mat-icon matSuffix>person</mat-icon>
-                                </mat-form-field>
+                <mat-form-field class="mat-form-group">
+                  <mat-label>firstName</mat-label>
+                  <input type="text" matInput formControlName="firstName">
+                  <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
 
-                                <mat-form-field class="mat-form-group">
-                                    <mat-label>lastname</mat-label>
-                                    <input type="text" matInput formControlName="lastName">
-                                    <mat-icon matSuffix>person</mat-icon>
-                                </mat-form-field>
+                <mat-form-field class="mat-form-group">
+                  <mat-label>lastname</mat-label>
+                  <input type="text" matInput formControlName="lastName">
+                  <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
 
-                                <mat-form-field class="mat-form-group">
-                                    <mat-label>password</mat-label>
-                                    <input type="password" matInput formControlName="password">
-                                    <mat-icon matSuffix>lock</mat-icon>
-                                </mat-form-field>
+                <mat-form-field class="mat-form-group">
+                  <mat-label>password</mat-label>
+                  <input type="password" matInput formControlName="password">
+                  <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
 
-                                <mat-form-field class="mat-form-group">
-                                    <mat-label>student code</mat-label>
-                                    <input type="text" matInput formControlName="studentCode">
-                                    <mat-icon matSuffix>lock</mat-icon>
-                                </mat-form-field>
+                <mat-form-field class="mat-form-group">
+                  <mat-label>student code</mat-label>
+                  <input type="text" matInput formControlName="studentCode">
+                  <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
 
-                                <mat-form-field class="mat-form-group">
-                                    <mat-label>barcode</mat-label>
-                                    <input type="text" matInput formControlName="barcode">
-                                    <mat-icon matSuffix>lock</mat-icon>
-                                </mat-form-field>
-
-
-                                <br>
-
-                                <button mat-raised-button class="mat-btn" color="primary" type="submit" [disabled]="createFormGroup.invalid">Create Student</button>
-                            </form>
-                        </div>
-                    </ng-template>
-                </mat-tab>
+                <mat-form-field class="mat-form-group">
+                  <mat-label>barcode</mat-label>
+                  <input type="text" matInput formControlName="barcode">
+                  <mat-icon matSuffix>lock</mat-icon>
+                </mat-form-field>
 
 
-            </mat-tab-group>
-        </mat-sidenav-content>
+                <br>
+
+                <button mat-raised-button class="mat-btn" color="primary" type="submit"
+                        [disabled]="createFormGroup.invalid">Create Student
+                </button>
+              </form>
+            </div>
+          </ng-template>
+        </mat-tab>
 
 
-    </mat-sidenav-container>
+      </mat-tab-group>
+    </mat-sidenav-content>
+
+
+  </mat-sidenav-container>
 </div>

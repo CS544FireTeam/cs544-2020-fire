@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import CourseOffering from "../../../domain/models/course-offering";
 import {CourseOfferingClientService} from "../../../domain/core/http";
+import {AuthService} from "../../../domain/core/security/auth.service";
+import {UserRoleEnum} from "../../../domain/enums";
 
 @Component({
   selector: 'fire-course-offering-home',
@@ -19,11 +21,13 @@ export class CourseOfferingHomeComponent implements OnInit {
   };
 
   selectedTab = 0;
-
+  isAdmin: boolean;
   currentCourseOffering: CourseOffering;
   courseOfferings: CourseOffering[];
 
-  constructor(private courseOfferingClientService: CourseOfferingClientService) {
+  constructor(private courseOfferingClientService: CourseOfferingClientService,
+              public auth: AuthService) {
+    this.isAdmin = auth.isActiveRole([UserRoleEnum.ADMIN])
   }
 
   ngOnInit() {

@@ -1,10 +1,11 @@
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav">
-    <button color="primary" mat-button routerLink="/home/users" (click)="drawer.toggle()">Users</button>
-    <button color="primary" mat-button routerLink="/home/courses"(click)="drawer.toggle()">Courses</button>
-    <button color="primary" mat-button routerLink="/home/courseoffering"(click)="drawer.toggle()">Course Offering</button>
-    <button color="primary" mat-button routerLink="/home/location"(click)="drawer.toggle()"> Location</button>
-    <button color="primary" mat-button routerLink="/home/timeslot"(click)="drawer.toggle()"> Time Slot</button>
+    <button [disabled]="isInActiveRole" color="primary" mat-button routerLink="/fire/users" (click)="drawer.toggle()">Users</button>
+    <button [disabled]="isInActiveRole" color="primary" mat-button routerLink="/fire/courses" (click)="drawer.toggle()">Courses</button>
+    <button [disabled]="isInActiveRole" color="primary" mat-button routerLink="/fire/courseoffering" (click)="drawer.toggle()">Course Offering
+    </button>
+    <button [disabled]="isInActiveRole" color="primary" mat-button routerLink="/fire/location" (click)="drawer.toggle()"> Location</button>
+    <button [disabled]="isInActiveRole" color="primary" mat-button routerLink="/fire/timeslot" (click)="drawer.toggle()"> Time Slot</button>
   </mat-drawer>
   <div class="sidenav-content">
     <mat-toolbar color="primary">

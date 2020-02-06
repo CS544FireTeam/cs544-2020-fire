@@ -13,7 +13,7 @@ export class TimeSlotListComponent extends PagingBaseComponent<TimeSlot> impleme
     this._timeSlots = TimeSlots;
     super.ngOnInit(TimeSlots);
   }
-
+  @Input() isAdmin: false;
   @Output() onEdit: EventEmitter<TimeSlot> = new EventEmitter();
   @Output() onAddNew: EventEmitter<TimeSlot> = new EventEmitter();
 

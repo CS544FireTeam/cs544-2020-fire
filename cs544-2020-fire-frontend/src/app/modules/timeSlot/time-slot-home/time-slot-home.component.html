@@ -3,9 +3,10 @@
     <fire-time-slot-list [timeSlots]="timeSlots"
                          (onEdit)="onEditTimeSlot($event)"
                          (onAddNew)="onAddTimeSlot()"
+                         [isAdmin]="isAdmin"
     ></fire-time-slot-list>
   </mat-tab>
-  <mat-tab label="Detail">
+  <mat-tab label="Detail" [disabled]="!isAdmin">
     <fire-time-slot-edit [timeSlot]="currentTimeSlot"
                         [timeSlots]="timeSlots"
                         (onAdd)="saveTimeSlot($event)"

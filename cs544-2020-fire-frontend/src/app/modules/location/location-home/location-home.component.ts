@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import Location from "../../../domain/models/location.model";
 import {FireserviceService} from "../../../domain/services/testservice/fireservice.service";
-import {LocationClientService} from "../../../domain/core/http";
+import {CourseClientService, LocationClientService} from "../../../domain/core/http";
+import {AuthService} from "../../../domain/core/security/auth.service";
+import {UserRoleEnum} from "../../../domain/enums";
 
 @Component({
   selector: 'fire-location-home',
@@ -16,12 +18,14 @@ export class LocationHomeComponent implements OnInit {
   };
 
   selectedTab = 0;
-
+  isAdmin: boolean;
   currentLocation: Location;
   locations: Location[];
 
   constructor(private fireService: FireserviceService,
-              private locationClientService: LocationClientService) {
+              private locationClientService: LocationClientService,
+              public auth: AuthService) {
+    this.isAdmin = auth.isActiveRole([UserRoleEnum.ADMIN])
   }
 
   ngOnInit() {

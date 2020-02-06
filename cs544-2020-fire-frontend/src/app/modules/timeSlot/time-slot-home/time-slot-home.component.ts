@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {TimeSlot} from "../../../domain/models";
 import {FireserviceService} from "../../../domain/services/testservice/fireservice.service";
-import {TimeSlotClientService} from "../../../domain/core/http";
+import {CourseClientService, TimeSlotClientService} from "../../../domain/core/http";
+import {AuthService} from "../../../domain/core/security/auth.service";
+import {UserRoleEnum} from "../../../domain/enums";
 
 @Component({
   selector: 'fire-time-slot-home',
@@ -18,13 +20,16 @@ export class TimeSlotHomeComponent implements OnInit {
   };
 
   selectedTab = 0;
-
+  isAdmin: boolean;
   currentTimeSlot: TimeSlot;
   timeSlots: TimeSlot[];
 
   constructor(private fireService: FireserviceService,
-              private timeSlotClientService: TimeSlotClientService) {
+              private timeSlotClientService: TimeSlotClientService,
+              public auth: AuthService) {
+    this.isAdmin = auth.isActiveRole([UserRoleEnum.ADMIN])
   }
+
 
   ngOnInit() {
     this.loadListTimeSlot();

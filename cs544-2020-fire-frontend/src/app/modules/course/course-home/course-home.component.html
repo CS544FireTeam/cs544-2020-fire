@@ -1,11 +1,12 @@
 <mat-tab-group [selectedIndex]="selectedTab" (selectedIndexChange)="selectedTab=$event">
   <mat-tab label="List Course">
     <fire-course-list [courses]="courses"
+                      [isAdmin]="isAdmin"
                       (onEdit)="onEditCourse($event)"
                       (onAddNew)="onAddCourse($event)"
     ></fire-course-list>
   </mat-tab>
-  <mat-tab label="Detail">
+  <mat-tab label="Detail" [disabled]="!isAdmin">
     <fire-course-edit [course]="currentCourse"
                       (onAdd)="saveCourse($event)"
                       (onDelete)="deleteCourse($event)"

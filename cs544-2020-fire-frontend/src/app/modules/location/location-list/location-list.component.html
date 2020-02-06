@@ -1,5 +1,5 @@
 <div class="item-actions">
-  <button mat-button color="primary" (click)="onAddClick()">Add Location</button>
+  <button mat-button color="primary" [disabled]="!isAdmin" (click)="onAddClick()"><mat-icon>add_location</mat-icon>Add Location</button>
 </div>
 <div class="item-container">
   <table mat-table [dataSource]="dataSource" matSort multiTemplateDataRows>
@@ -14,7 +14,7 @@
     <ng-container matColumnDef="actionButton">
       <th mat-header-cell *matHeaderCellDef mat-sort-header width="5%"> Action</th>
       <td mat-cell *matCellDef="let element">
-        <button mat-button (click)="onEditClick(element)">Edit</button>
+        <button class="action-hover" [disabled]="!isAdmin" mat-button (click)="onEditClick(element)"><mat-icon>edit</mat-icon></button>
       </td>
       <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>

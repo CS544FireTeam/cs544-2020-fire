@@ -13,7 +13,7 @@ export class LocationListComponent extends PagingBaseComponent<Location> impleme
     this._locations = locations;
     super.ngOnInit(locations);
   }
-
+  @Input() isAdmin: false;
   @Output() onEdit: EventEmitter<Location> = new EventEmitter();
   @Output() onAddNew: EventEmitter<Location> = new EventEmitter();
 

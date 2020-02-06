@@ -13,7 +13,7 @@ export class CourseOfferingListComponent extends PagingBaseComponent<CourseOffer
     this._courseOfferings = courseOfferings;
     super.ngOnInit(courseOfferings);
   }
-
+  @Input() isAdmin: false;
   @Output() onEdit: EventEmitter<CourseOffering> = new EventEmitter();
   @Output() onAddNew: EventEmitter<CourseOffering> = new EventEmitter();
 

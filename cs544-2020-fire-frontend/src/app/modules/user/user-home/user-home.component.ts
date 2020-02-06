@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, Input} from '@angular/core';
 import { FireserviceService } from 'src/app/domain/services/testservice/fireservice.service';
 import { UserClientService } from 'src/app/domain/core/http/user-client.service';
 import User from 'src/app/domain/models/user.model';
@@ -7,6 +7,7 @@ import { UserRoleEnum, Student } from 'src/app/domain';
 import { FormGroup, Validators, FormControl, FormBuilder } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { StudentClientService } from 'src/app/domain/core/http/student-client.service';
+import {AuthService} from "../../../domain/core/security/auth.service";
 
 export interface PeriodicElement {
   name: string;
@@ -47,13 +48,17 @@ export class UserHomeComponent implements OnInit {
   opened:boolean = false;
   dataSource: MatTableDataSource<User>;
   displayedColumns: string[] = ['Username', 'Firstname', 'Lastname', 'Role','Edit','Delete'];
+  isAdmin: boolean;
+
   constructor(private fireService:FireserviceService,
     private userClientService:UserClientService,
     private studentService:StudentClientService,
-    private formBuilder: FormBuilder) { 
-    this.dataSource = new MatTableDataSource([])
+    private formBuilder: FormBuilder, public auth: AuthService) {
+    this.dataSource = new MatTableDataSource([]);
     this.updateFormGroup = this.setFormbuilder(this.fireForm);
     this.createFormGroup = this.setCreateFormBuilder();
+    this.isAdmin = auth.isActiveRole([UserRoleEnum.ADMIN])
+
   }
 
   ngOnInit() {
@@ -178,7 +183,7 @@ export class UserHomeComponent implements OnInit {
       this.updateLocal();
       this.opened=false;
     })
-   
+
   }
 
   updateLocal():void{

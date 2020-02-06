@@ -23,7 +23,6 @@ export class HomepageComponent implements OnInit {
         '',
         Validators.compose([
           Validators.required,
-          Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'),
         ])
       ),
       password : new FormControl(
@@ -66,8 +65,7 @@ export class HomepageComponent implements OnInit {
       res => {
         if(res.token!=null){
           localStorage.setItem("token",res.token);
-          localStorage.setItem("email",details.email.toString());
-          localStorage.setItem("password",details.password.toString());
+          localStorage.setItem("fire-role",res.user.role);
           this.fireService.user =res.user;
         }else{
         }
@@ -81,11 +79,9 @@ export class HomepageComponent implements OnInit {
     this.fireService.createAccount(details.email,details.password).subscribe(
       res => {
         localStorage.setItem("email",details.email.toString());
-        localStorage.setItem("password",details.password.toString());
         localStorage.setItem("id",res.id);
         this.login(details);
       }
     );
   }
-
 }

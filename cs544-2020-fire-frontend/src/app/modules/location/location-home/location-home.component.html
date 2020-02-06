@@ -3,9 +3,10 @@
     <fire-location-list [locations]="locations"
                         (onEdit)="onEditLocation($event)"
                         (onAddNew)="onAddLocation()"
+                        [isAdmin]="isAdmin"
     ></fire-location-list>
   </mat-tab>
-  <mat-tab label="Detail">
+  <mat-tab label="Detail" [disabled]="!isAdmin">
     <fire-location-edit [location]="currentLocation"
                         [locations]="locations"
                         (onAdd)="saveLocation($event)"

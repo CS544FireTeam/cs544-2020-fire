@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FireserviceService} from 'src/app/domain/services/testservice/fireservice.service';
 import Course from "../../../domain/models/course.model";
 import {CourseClientService} from "../../../domain/core/http";
+import {AuthService} from "../../../domain/core/security/auth.service";
+import {UserRoleEnum} from "../../../domain/enums";
 
 
 @Component({
@@ -24,8 +26,12 @@ export class CourseHomeComponent implements OnInit {
   currentCourse: Course;
   courses: Course[];
 
+  isAdmin: boolean;
+
   constructor(private fireService: FireserviceService,
-              private courseClientService: CourseClientService) {
+              private courseClientService: CourseClientService,
+              public auth: AuthService) {
+    this.isAdmin = auth.isActiveRole([UserRoleEnum.ADMIN])
   }
 
   ngOnInit() {
