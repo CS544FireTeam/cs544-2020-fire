@@ -3,11 +3,15 @@ import {RouterModule, Routes} from '@angular/router';
 import {CourseOfferingHomeComponent} from "./course-offering-home/course-offering-home.component";
 import {CourseOfferingListComponent} from "./course-offering-list/course-offering-list.component";
 import {CourseOfferingEditComponent} from "./course-offering-edit/course-offering-edit.component";
+import {UserRoleEnum} from "../../domain/enums";
 
 const routes: Routes = [
   {
     path: '',
     component: CourseOfferingHomeComponent,
+    data: {
+      expectedRoles: [UserRoleEnum.ADMIN, UserRoleEnum.FACULTY]
+    }
   },
   {
     path: 'list',

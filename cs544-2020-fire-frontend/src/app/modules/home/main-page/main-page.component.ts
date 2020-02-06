@@ -14,13 +14,18 @@ export class MainPageComponent implements OnInit {
   }
 
   isInActiveRole: boolean;
+  roleClass: string;
 
   ngOnInit() {
     this.isInActiveRole = !this.auth.isActiveRole([UserRoleEnum.ADMIN, UserRoleEnum.FACULTY])
+    const role = this.auth.getUserRole();
+    this.roleClass = 'user_' + role.toLowerCase();
   }
 
   logout() {
     localStorage.clear();
     this.router.navigate(['../']);
   }
+
+
 }

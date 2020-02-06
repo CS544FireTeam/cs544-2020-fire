@@ -66,6 +66,7 @@ export class HomepageComponent implements OnInit {
         if(res.token!=null){
           localStorage.setItem("token",res.token);
           localStorage.setItem("fire-role",res.user.role);
+          localStorage.setItem("fire-user",JSON.stringify(res.user));
           this.fireService.user =res.user;
         }else{
         }

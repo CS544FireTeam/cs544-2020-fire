@@ -1,5 +1,5 @@
 <mat-drawer-container class="container" autosize>
-  <mat-drawer #drawer class="sidenav">
+  <mat-drawer #drawer  [ngClass]="roleClass">
     <button [disabled]="isInActiveRole" color="primary" mat-button routerLink="/fire/welcome" (click)="drawer.toggle()">Welcome</button>
     <button [disabled]="isInActiveRole" color="primary" mat-button routerLink="/fire/users" (click)="drawer.toggle()">Users</button>
     <button [disabled]="isInActiveRole" color="primary" mat-button routerLink="/fire/courses" (click)="drawer.toggle()">Courses</button>
@@ -10,17 +10,17 @@
   </mat-drawer>
   <div class="sidenav-content">
     <mat-toolbar color="primary">
-      <mat-toolbar-row>
+      <mat-toolbar-row [ngClass]="roleClass">
         <button mat-icon-button (click)="drawer.toggle()">
           <mat-icon>menu</mat-icon>
         </button>
         <span>Bar-code Reader</span>
         <span class="spacer"></span>
-        <mat-icon>favorite</mat-icon>
+        <span><mat-icon>favorite</mat-icon><span class="spacer"></span>{{auth.getUserInformation()}}<mat-icon>favorite</mat-icon></span>
         <button mat-icon-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
-        <mat-menu #menu="matMenu">
+        <mat-menu #menu="matMenu" class="action-hover">
           <button mat-menu-item (click)="logout()">
             <mat-icon>directions_walk</mat-icon>
             <span>Logout</span>
