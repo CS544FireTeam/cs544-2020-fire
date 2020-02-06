@@ -1,5 +1,6 @@
 package edu.mum.cs.cs544.web;
 
+import edu.mum.cs.cs544.integration.SignupProducer;
 import edu.mum.cs.cs544.model.Admin;
 import edu.mum.cs.cs544.model.Faculty;
 import edu.mum.cs.cs544.model.Student;
@@ -42,10 +43,23 @@ public class RegisterController {
         return this.adminService.create(admin);
     }
 
+//    @PostMapping(value = "/student")
+//    public Student addStudent(@Valid @RequestBody Student student) {
+//        student.setPassword(passwordEncoder.encode(student.getPassword()));
+//        return this.studentService.create(student);
+//    }
+    
+    @Autowired
+    private SignupProducer sender;
+
     @PostMapping(value = "/student")
     public Student addStudent(@Valid @RequestBody Student student) {
         student.setPassword(passwordEncoder.encode(student.getPassword()));
-        return this.studentService.create(student);
+        Student s = this.studentService.create(student);
+        if (s != null) {
+            sender.sendMessage(s);
+        }
+        return s;
     }
 
     @PostMapping(value = "/faculty")
