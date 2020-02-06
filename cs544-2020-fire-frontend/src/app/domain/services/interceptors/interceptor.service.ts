@@ -45,7 +45,7 @@ export class InterceptorService implements HttpInterceptor{
    }
     return next.handle(authReq).pipe(tap(success=>{
       if(authReq.url=="http://localhost:8080/login"){
-         this.injector.get(Router).navigateByUrl('fire');
+         this.injector.get(Router).navigateByUrl('fire/welcome');
       }
 
     },err=>{

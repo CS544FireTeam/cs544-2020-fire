@@ -5,6 +5,7 @@ import {HomepageComponent} from "./modules/home/home-page/home-page.component";
 import {AuthGuardFireService} from "./domain/core/security/auth-guard.service";
 import {AdminGuard} from "./domain/core/security/admin-guard.service";
 import {UserRoleEnum} from "./domain/enums";
+import {DashboardComponent} from "./modules/home/dashboard/dashboard.component";
 
 
 const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
     component: MainPageComponent,
     canActivate: [AuthGuardFireService],
     children: [
+      {
+        path:'welcome',
+        component: DashboardComponent,
+      },
       {
         path: 'users',
         loadChildren: () => import('./modules/user/user.module').then(m => m.UserModule),

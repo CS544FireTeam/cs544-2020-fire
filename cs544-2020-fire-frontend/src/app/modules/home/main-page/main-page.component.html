@@ -1,5 +1,6 @@
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav">
+    <button [disabled]="isInActiveRole" color="primary" mat-button routerLink="/fire/welcome" (click)="drawer.toggle()">Welcome</button>
     <button [disabled]="isInActiveRole" color="primary" mat-button routerLink="/fire/users" (click)="drawer.toggle()">Users</button>
     <button [disabled]="isInActiveRole" color="primary" mat-button routerLink="/fire/courses" (click)="drawer.toggle()">Courses</button>
     <button [disabled]="isInActiveRole" color="primary" mat-button routerLink="/fire/courseoffering" (click)="drawer.toggle()">Course Offering

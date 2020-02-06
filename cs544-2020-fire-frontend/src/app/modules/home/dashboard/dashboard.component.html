@@ -1,57 +1,12 @@
-<div class="sidebar" data-color="rose" data-background-color="black" data-image="../assets/img/sidebar-1.jpg">
-    <img src="https://www.w3schools.com/howto/img_avatar.png" alt="Avatar" class="avatar">
-    <div class="dash-title">
-        Name
-    </div>
-    <section>
-        <mat-action-list>
-            <button mat-list-item (click)="show('users')" class="section-side"> Users </button>
-            <button mat-list-item (click)="show('course')" class="section-side"> Courses </button>
-            <button mat-list-item (click)="show('courseOffering')" class="section-side"> Courses Offerings </button>
-            <button mat-list-item (click)="show('session')" class="section-side"> Sessions </button>
-            <button mat-list-item (click)="show('location')" class="section-side"> Locations </button>
-            <button mat-list-item (click)="show('timeSlot')" class="section-side"> Time Slot </button>
-            <button mat-list-item (click)="logout()" class="section-side"> Logout </button>
-        </mat-action-list>
-    </section>
-
-</div>
-
-<div class="main-panel">
-    <mat-sidenav-container class="sevi-nav-container">
-
-        <mat-sidenav-content>
-            <section *ngIf="page=='users'" class="log-class">
-                <div>
-                    <app-userspage></app-userspage>
-                </div>
-            </section>
-
-            <section *ngIf="page=='course'" class="log-class">
-                <div>
-                    <fire-coursepage></fire-coursepage>
-                </div>
-            </section>
-            <section *ngIf="page=='courseOffering'" class="log-class">
-                <div>
-                    <fire-course-offering-home></fire-course-offering-home>
-                </div>
-            </section>
-            <section *ngIf="page=='session'" class="log-class">
-                <div>
-                    <fire-session-home>x</fire-session-home>
-                </div>
-            </section>
-            <section *ngIf="page=='location'" class="log-class">
-                <div>
-                    <fire-location-home></fire-location-home>
-                </div>
-            </section>
-            <section *ngIf="page=='timeSlot'" class="log-class">
-                <div>
-                    <fire-time-slot-home></fire-time-slot-home>
-                </div>
-            </section>
-        </mat-sidenav-content>
-    </mat-sidenav-container>
-</div>
+<mat-card class="example-card" style="background: black">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>Fire Team</mat-card-title>
+    <mat-card-subtitle><span style="font-size: 15px; color: chartreuse" >Professor: </span> Payman Salek</mat-card-subtitle>
+    <mat-card-subtitle><span style="font-size: 15px; color: chartreuse">Team: </span><mat-icon>favorite</mat-icon> Hoang Thao Nguyen <mat-icon>favorite</mat-icon> Tang Binh Lam <mat-icon>favorite</mat-icon> Ny Aina Michael Andriantsoa <mat-icon>favorite</mat-icon>  Yusuf Taha <mat-icon>favorite</mat-icon>  Nwogbo Bernard <mat-icon>favorite</mat-icon>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image sizes="100px" src="./../../../../assets/fire-team.jpg" style="margin-left: 50px" alt="Fire Team Image">
+  <mat-card-content>
+  </mat-card-content>
+</mat-card>

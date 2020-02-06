@@ -14,12 +14,14 @@ import {httpIntercetptorProvider} from "./domain/services/interceptors";
 import {MainPageComponent} from "./modules/home/main-page/main-page.component";
 import {HomepageComponent} from "./modules/home/home-page/home-page.component";
 import {JwtHelperService, JwtModule} from "@auth0/angular-jwt";
+import {DashboardComponent} from "./modules/home/dashboard/dashboard.component";
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPageComponent,
     HomepageComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
