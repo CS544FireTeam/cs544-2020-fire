@@ -54,10 +54,11 @@ public class DbInitializer implements CommandLineRunner {
     public void run(String... strings) throws Exception {
     	User admin = new Admin("admin", "admin", "Peter", "Yellow");
         User sys = new Admin("sys", "sys", "Jame", "Bond");
-        Student stud1 = new Student("stud1", "1", "Bob", "M", "100-111-2222", "11223345");
+        Student stud1 = new Student("stud1", "1", "Bob", "M", "100-111-2222", "12223345");
+        Student stud2 = new Student("stud2", "2", "Bob2", "M2", "200-111-2222", "21223345");
         Faculty facu1 = new Faculty("facu1", "1", "Alice", "N");
         
-        userRepository.saveAll(Arrays.asList(admin, sys, stud1, facu1));
+        userRepository.saveAll(Arrays.asList(admin, sys, stud1, stud2, facu1));
         
         Location loc1 = new Location("M001");
         Location loc2 = new Location("V001");
@@ -83,8 +84,20 @@ public class DbInitializer implements CommandLineRunner {
         a1.setLocation(loc1);
         a1.setTimeSlot(ts1);
         a1.setStudent(stud1);
+
+        Attendance a2 = new Attendance();
+        a2.setAttendedDate(new Date());
+        a2.setLocation(loc2);
+        a2.setTimeSlot(ts2);
+        a2.setStudent(stud2);
+
+        Attendance a3 = new Attendance();
+        a3.setAttendedDate(new Date());
+        a3.setLocation(loc2);
+        a3.setTimeSlot(ts3);
+        a3.setStudent(stud2);
         
-        attendanceRepository.saveAll(Arrays.asList(a1));
+        attendanceRepository.saveAll(Arrays.asList(a1, a2, a3));
         
         CourseOffering co1 = new CourseOffering();
         co1.setCourse(c1);
@@ -92,12 +105,26 @@ public class DbInitializer implements CommandLineRunner {
         co1.setLocation(loc1);
         co1.setStartDate(new Date());
         co1.setEndDate(new Date());
+
+        CourseOffering co2 = new CourseOffering();
+        co2.setCourse(c2);
+        co2.setFaculty(facu1);
+        co2.setLocation(loc2);
+        co2.setStartDate(new Date());
+        co2.setEndDate(new Date());
+
+        CourseOffering co3 = new CourseOffering();
+        co3.setCourse(c2);
+        co3.setFaculty(facu1);
+        co3.setLocation(loc2);
+        co3.setStartDate(new Date());
+        co3.setEndDate(new Date());
         
-        courseOfferingRepository.saveAll(Arrays.asList(co1));
+        courseOfferingRepository.saveAll(Arrays.asList(co1, co2, co3));
         
         Session s1 = new Session(co1, ts1, new Date());
-        Session s2 = new Session(co1, ts2, new Date());
-        Session s3 = new Session(co1, ts3, new Date());
+        Session s2 = new Session(co2, ts2, new Date());
+        Session s3 = new Session(co3, ts3, new Date());
         
         sessionRepository.saveAll(Arrays.asList(s1, s2, s3));
         
